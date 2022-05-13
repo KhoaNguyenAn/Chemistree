@@ -37,6 +37,15 @@ class ViewController: UIViewController {
         self.view.addSubview(emojiOptionsOverlay)
     }
     
+
+    @IBAction func takePic(_ sender: Any) {
+        let vc = UIImagePickerController()
+        vc.sourceType = .photoLibrary
+        vc.delegate = self
+        vc.allowsEditing = true
+        present(vc, animated: true)
+    }
+    
     /// Scale and alpha of successive cards visible to the user
     let cardAttributes: [(downscale: CGFloat, alpha: CGFloat)] = [(1, 1), (0.92, 0.8), (0.84, 0.6), (0.76, 0.4)]
     let cardInteritemSpacing: CGFloat = 15
@@ -306,7 +315,21 @@ class ViewController: UIViewController {
 }
 
 // MARK: - Unrelated to cards logic code
-extension ViewController {
+extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        
+        if let image = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage")] as? UIImage {
+//            imageView.image = image
+            print("abc")
+        }
+        picker.dismiss(animated: true, completion: nil)
+
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
     /// Hide status bar
     override var prefersStatusBarHidden: Bool {
         get {

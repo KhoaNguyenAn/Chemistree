@@ -40,10 +40,13 @@ class ImageCard: CardView {
 
         textBox2.frame = CGRect(x: 12, y: textBox1.frame.maxY + 10, width: 120, height: 24)
         self.addSubview(textBox2)
+        
+
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
 
 }

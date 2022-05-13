@@ -17,6 +17,7 @@ class MapScreen: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor(red: 197/255, green: 214/255, blue: 217/255, alpha: 1.0)
 //        mapView.ignoresS
         // Do any additional setup after loading the view.
     }

@@ -58,6 +58,7 @@
 				49225DDF282D232500993A22 /* ImageCard.swift */,
 				49225DDD282D22E600993A22 /* EmojiOptionsOverlay.swift */,
 				49225DDB282D22A600993A22 /* CardView.swift */,
+				493B2DD5282D204700BC4B7E /* ViewController.swift */,
 				49225DE3282D245700993A22 /* LoginScreen.swift */,
 				4900ECB0282E1F570077994B /* MapScreen.swift */,
 				4900ECB4282E21F10077994B /* LocationAnnotation.swift */,
@@ -80,7 +81,6 @@
 			children = (
 				493B2DD1282D204700BC4B7E /* AppDelegate.swift */,
 				493B2DD3282D204700BC4B7E /* SceneDelegate.swift */,
-				493B2DD5282D204700BC4B7E /* ViewController.swift */,
 				493B2DD7282D204700BC4B7E /* Main.storyboard */,
 				493B2DDC282D204800BC4B7E /* LaunchScreen.storyboard */,
 				493B2DDF282D204800BC4B7E /* Info.plist */,

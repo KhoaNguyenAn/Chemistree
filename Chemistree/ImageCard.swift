@@ -17,6 +17,7 @@ class ImageCard: CardView {
         let imageView = UIImageView(image: UIImage(named: "trees"))
         imageView.contentMode = .scaleAspectFill
         imageView.backgroundColor = UIColor(red: 67/255, green: 79/255, blue: 182/255, alpha: 1.0)
+//        imageView.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
         imageView.layer.cornerRadius = 5
         imageView.layer.masksToBounds = true
         
@@ -26,7 +27,7 @@ class ImageCard: CardView {
         // dummy text boxes
         
         let textBox1 = UIView()
-        textBox1.backgroundColor = UIColor(red: 67/255, green: 79/255, blue: 182/255, alpha: 1.0)
+        textBox1.backgroundColor = UIColor(red: 60/255, green: 200/255, blue: 100/255, alpha: 1.0)
         textBox1.layer.cornerRadius = 12
         textBox1.layer.masksToBounds = true
 
@@ -34,7 +35,7 @@ class ImageCard: CardView {
         self.addSubview(textBox1)
 
         let textBox2 = UIView()
-        textBox2.backgroundColor = UIColor(red: 67/255, green: 79/255, blue: 182/255, alpha: 1.0)
+        textBox2.backgroundColor = UIColor(red: 60/255, green: 150/255, blue: 100/255, alpha: 1.0)
         textBox2.layer.cornerRadius = 12
         textBox2.layer.masksToBounds = true
 

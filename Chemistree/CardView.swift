@@ -27,7 +27,8 @@ class CardView: UIView {
         
         // card style
         
-        self.backgroundColor = UIColor(red: 79/255, green: 96/255, blue: 201/255, alpha: 1.0)
+//        self.backgroundColor = UIColor(red: 79/255, green: 96/255, blue: 201/255, alpha: 1.0)
+        self.backgroundColor = UIColor(red: 182/255, green: 195/255, blue: 255/255, alpha: 1.0)
         self.layer.cornerRadius = 10
         
         // labels on top left and right

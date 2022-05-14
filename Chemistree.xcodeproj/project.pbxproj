@@ -11,6 +11,7 @@
 		4900ECB5282E21F10077994B /* LocationAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4900ECB4282E21F10077994B /* LocationAnnotation.swift */; };
 		4900ECB7282E22680077994B /* NewLocationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4900ECB6282E22680077994B /* NewLocationDelegate.swift */; };
 		4900ECBD282E2FDE0077994B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4900ECBC282E2FDD0077994B /* Assets.xcassets */; };
+		490B804F282F7FD10020D69E /* CameraScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490B804E282F7FD10020D69E /* CameraScreen.swift */; };
 		49225DDC282D22A600993A22 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49225DDB282D22A600993A22 /* CardView.swift */; };
 		49225DDE282D22E600993A22 /* EmojiOptionsOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49225DDD282D22E600993A22 /* EmojiOptionsOverlay.swift */; };
 		49225DE0282D232500993A22 /* ImageCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49225DDF282D232500993A22 /* ImageCard.swift */; };
@@ -27,6 +28,7 @@
 		4900ECB4282E21F10077994B /* LocationAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationAnnotation.swift; sourceTree = "<group>"; };
 		4900ECB6282E22680077994B /* NewLocationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewLocationDelegate.swift; sourceTree = "<group>"; };
 		4900ECBC282E2FDD0077994B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Chemistree/Assets.xcassets; sourceTree = "<group>"; };
+		490B804E282F7FD10020D69E /* CameraScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraScreen.swift; sourceTree = "<group>"; };
 		49225DDB282D22A600993A22 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CardView.swift; path = Chemistree/CardView.swift; sourceTree = "<group>"; };
 		49225DDD282D22E600993A22 /* EmojiOptionsOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EmojiOptionsOverlay.swift; path = Chemistree/EmojiOptionsOverlay.swift; sourceTree = "<group>"; };
 		49225DDF282D232500993A22 /* ImageCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageCard.swift; path = Chemistree/ImageCard.swift; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 				493B2DD5282D204700BC4B7E /* ViewController.swift */,
 				49225DE3282D245700993A22 /* LoginScreen.swift */,
 				4900ECB0282E1F570077994B /* MapScreen.swift */,
+				490B804E282F7FD10020D69E /* CameraScreen.swift */,
 				4900ECB4282E21F10077994B /* LocationAnnotation.swift */,
 				4900ECB6282E22680077994B /* NewLocationDelegate.swift */,
 				493B2DD0282D204700BC4B7E /* Chemistree */,
@@ -164,6 +167,7 @@
 				49225DE0282D232500993A22 /* ImageCard.swift in Sources */,
 				493B2DD2282D204700BC4B7E /* AppDelegate.swift in Sources */,
 				4900ECB7282E22680077994B /* NewLocationDelegate.swift in Sources */,
+				490B804F282F7FD10020D69E /* CameraScreen.swift in Sources */,
 				49225DDE282D22E600993A22 /* EmojiOptionsOverlay.swift in Sources */,
 				4900ECB5282E21F10077994B /* LocationAnnotation.swift in Sources */,
 				49225DE4282D245700993A22 /* LoginScreen.swift in Sources */,
@@ -317,6 +321,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9MWACK3582;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Chemistree/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -344,6 +349,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9MWACK3582;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Chemistree/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

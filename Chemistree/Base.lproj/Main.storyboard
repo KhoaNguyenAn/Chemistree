@@ -61,10 +61,47 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="fml-lO-qY6"/>
                     <navigationItem key="navigationItem" id="E5a-CL-XC0"/>
+                    <connections>
+                        <segue destination="mEx-kM-CqF" kind="show" identifier="captureTreeSegue" id="a9Q-Vk-Uzc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="879.71014492753625" y="671.65178571428567"/>
+        </scene>
+        <!--Camera Screen-->
+        <scene sceneID="lJk-TA-TBy">
+            <objects>
+                <viewController id="mEx-kM-CqF" customClass="CameraScreen" customModule="Chemistree" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JMn-JZ-qeC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nQK-B8-pyB">
+                                <rect key="frame" x="51" y="68" width="312" height="648"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Isp-v5-obl">
+                                <rect key="frame" x="100" y="766" width="215" height="49"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="Upload your tree"/>
+                                <connections>
+                                    <action selector="uploadYourTree:" destination="mEx-kM-CqF" eventType="touchUpInside" id="Jem-El-o6k"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ewV-Ks-Uyg"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="lNA-Nj-lUL"/>
+                    <connections>
+                        <outlet property="imageView" destination="nQK-B8-pyB" id="aeG-QB-BJm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HuH-qO-2UX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1815.9420289855075" y="671.65178571428567"/>
         </scene>
         <!--Item 2-->
         <scene sceneID="oij-YM-I6b">

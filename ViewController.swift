@@ -37,7 +37,10 @@ class ViewController: UIViewController {
         self.view.addSubview(emojiOptionsOverlay)
     }
     
-
+    
+    func abc() {
+        print("abc")
+    }
     @IBAction func takePic(_ sender: Any) {
 //        let vc = UIImagePickerController()
 //        vc.sourceType = .photoLibrary

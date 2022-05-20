@@ -14,15 +14,33 @@ class CameraScreen: UIViewController, UIImagePickerControllerDelegate, UINavigat
 
         // Do any additional setup after loading the view.
 
-        let picker = UIImagePickerController()
-        picker.sourceType = .camera
-        picker.delegate = self
-        present(picker, animated: true)
+//        let picker = UIImagePickerController()
+//        picker.sourceType = .camera
+//        picker.delegate = self
+//        present(picker, animated: true)
+        imageView.backgroundColor = UIColor(red: 197/255, green: 214/255, blue: 217/255, alpha: 1.0)
     }
     
     @IBOutlet weak var imageView: UIImageView!
     
+    @IBAction func uploadPic(_ sender: Any) {
+        let vc = UIImagePickerController()
+        vc.sourceType = .photoLibrary
+        vc.delegate = self
+        vc.allowsEditing = true
+        present(vc, animated: true)
+    }
+    @IBAction func takePic(_ sender: Any) {
+        let picker = UIImagePickerController()
+        picker.sourceType = .camera
+        picker.delegate = self
+        picker.allowsEditing = true
+        present(picker, animated: true)
+    }
+    
     @IBAction func uploadYourTree(_ sender: Any) {
+        
+        
         navigationController?.popViewController(animated: false)
         return
     }

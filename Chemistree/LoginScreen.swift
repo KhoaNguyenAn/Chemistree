@@ -15,8 +15,17 @@ class LoginScreen: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
+    @IBOutlet weak var emailField: UITextField!
+    @IBOutlet weak var passwordField: UITextField!
+    @IBAction func signUpButton(_ sender: Any) {
+        performSegue(withIdentifier: "showRegisterScreenSegue", sender: sender)
+    }
+    
     @IBAction func loginButton(_ sender: Any) {
+        let email = emailField.text
+        let password = passwordField.text
+        
+//        databaseController?.signIn(email: email ?? "", password: password ?? "")
         performSegue(withIdentifier: "showTreesSegue", sender: sender)
     }
     /*

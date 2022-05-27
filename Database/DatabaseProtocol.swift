@@ -14,16 +14,17 @@
 //}
 //
 //enum ListenerType {
-//    case team
-//    case heroes
+//    case allTrees
+//    case user
 //    case auth
 //    case all
+//    case tree
 //}
 //
 //protocol DatabaseListener: AnyObject {
 //    var listenerType: ListenerType {get set}
 //    func onUserChange(change: DatabaseChange, users: [User])
-//    func onAllHeroesChange(change: DatabaseChange, heroes: [Superhero])
+//    func onAllTreesChange(change: DatabaseChange, trees: [Tree])
 //    func onAuthChange(change: DatabaseChange)
 //}
 //
@@ -33,14 +34,7 @@
 //    func addListener(listener: DatabaseListener)
 //    func removeListener(listener: DatabaseListener)
 //
-//    func addSuperhero(name: String, abilities:String, universe: Universe) -> Superhero
-//    func deleteSuperhero(hero: Superhero)
-//
-//    var defaultTeam: Team {get}
-//    func addTeam(teamName: String) -> Team
-//    func deleteTeam(team: Team)
-//    func addHeroToTeam(hero: Superhero, team: Team) -> Bool
-//    func removeHeroFromTeam(hero: Superhero, team: Team)
+//    func addTree(name: String, desc :String, img: UIImage) -> Tree
 //    func logIn(email: String, password: String)
 //    func signIn(email: String, password: String)
 //}

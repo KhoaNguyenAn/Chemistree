@@ -25,7 +25,13 @@ class LoginScreen: UIViewController {
         let email = emailField.text
         let password = passwordField.text
         
-//        databaseController?.signIn(email: email ?? "", password: password ?? "")
+//        Task {
+//            await databaseController?.signIn(email: email ?? "", password: password ?? "")
+//
+//            await MainActor.run {
+//                performSegue(withIdentifier: "showTreesSegue", sender: sender)
+//            }
+//        }
         performSegue(withIdentifier: "showTreesSegue", sender: sender)
     }
     /*

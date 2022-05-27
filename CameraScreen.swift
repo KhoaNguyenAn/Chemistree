@@ -8,7 +8,8 @@
 import UIKit
 
 class CameraScreen: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
-
+    
+    var imagePick : UIImage! = nil
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -40,7 +41,7 @@ class CameraScreen: UIViewController, UIImagePickerControllerDelegate, UINavigat
     
     @IBAction func uploadYourTree(_ sender: Any) {
         
-        
+        uploadImageToFirebase()
         navigationController?.popViewController(animated: false)
         return
     }
@@ -65,8 +66,13 @@ class CameraScreen: UIViewController, UIImagePickerControllerDelegate, UINavigat
         guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
             return
         }
-        
+        imagePick = image
         imageView.image = image
+        
+    }
+    
+    func uploadImageToFirebase() {
+        
     }
 
 }

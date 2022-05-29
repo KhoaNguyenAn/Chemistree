@@ -6,9 +6,15 @@
 //
 
 import UIKit
+import FirebaseStorage
+import Firebase
+import FirebaseFirestore
 
 class CameraScreen: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
     
+    @IBOutlet weak var treeName: UITextField!
+    
+    @IBOutlet weak var treeDescription: UITextField!
     var imagePick : UIImage! = nil
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +46,6 @@ class CameraScreen: UIViewController, UIImagePickerControllerDelegate, UINavigat
     }
     
     @IBAction func uploadYourTree(_ sender: Any) {
-        
         uploadImageToFirebase()
         navigationController?.popViewController(animated: false)
         return
@@ -72,6 +77,48 @@ class CameraScreen: UIViewController, UIImagePickerControllerDelegate, UINavigat
     }
     
     func uploadImageToFirebase() {
+        // Make sure that the selected image isn't nil
+        guard imagePick != nil else {
+            return
+        }
+        
+        guard treeName != nil else {
+            return
+        }
+        
+        // Create storage reference
+        let storage = Storage.storage()
+        let storageRef = storage.reference()
+
+        // Turn our image into data
+        let imageData = imagePick!.jpegData(compressionQuality: 0.8)
+        
+        // Check that we were able to convert it to data
+        guard imageData != nil else {
+            return
+        }
+        
+        // Specify the file path and name
+        let path = "trees_images/\(UUID().uuidString).jpg"
+        let fileRef = storageRef.child(path)
+        
+        // Upload that data
+        let uploadTask = fileRef.putData(imageData!, metadata: nil) {
+            metadata, error in
+            
+            // Check for errors
+            if error == nil && metadata != nil {
+                
+                //TODO: Save a reference to the file in Firestore DB
+                let db = Firestore.firestore()
+                db.collection("trees").document().setData(
+                    ["name": self.treeName.text!,
+                     "desc": self.treeDescription.text!,
+                     "url_img": path]
+                )
+            }
+        }
+        
         
     }
 

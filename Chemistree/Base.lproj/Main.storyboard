@@ -244,15 +244,12 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Description:" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="xKP-NV-FO8">
-                                <rect key="frame" x="36" y="609" width="327" height="128"/>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Tree Description" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SWC-Tv-23Z">
+                                <rect key="frame" x="36" y="607" width="327" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemTealColor"/>
-                                <color key="tintColor" systemColor="systemTealColor"/>
-                                <color key="textColor" systemColor="secondarySystemBackgroundColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ewV-Ks-Uyg"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -273,6 +270,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="imageView" destination="nQK-B8-pyB" id="aeG-QB-BJm"/>
+                        <outlet property="treeDescription" destination="SWC-Tv-23Z" id="K93-WZ-Vh2"/>
+                        <outlet property="treeName" destination="CH4-PZ-FkL" id="Hxs-0y-I7L"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuH-qO-2UX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -349,14 +348,8 @@
     </scenes>
     <resources>
         <image name="logo" width="656" height="718"/>
-        <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemTealColor">
-            <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

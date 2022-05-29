@@ -10,10 +10,18 @@ import UIKit
 import FirebaseFirestoreSwift
 
 
-class Tree: NSObject {
-    var image: UIImage?
+class Tree: NSObject, Codable {
+    @DocumentID var id: String?
     var name: String?
     var desc: String?
+    var image: String?
 }
+
+//enum CodeingKeys: String, CodingKey {
+//    case id
+//    case name
+//    case desc
+//    case image
+//}
 
 

@@ -7,7 +7,22 @@
 
 import UIKit
 
-class LoginScreen: UIViewController {
+class LoginScreen: UIViewController, DatabaseListener {
+    func onUserChange(change: DatabaseChange, users: [User]) {
+        // do nothing
+    }
+    
+    func onAllTreesChange(change: DatabaseChange, trees: [Tree]) {
+        // do nothing
+    }
+    
+    func onAuthChange(change: DatabaseChange) {
+        // do nothing
+    }
+    
+    
+    var listenerType: ListenerType = .auth
+    weak var databaseController: DatabaseProtocol?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,14 +40,13 @@ class LoginScreen: UIViewController {
         let email = emailField.text
         let password = passwordField.text
         
-//        Task {
-//            await databaseController?.signIn(email: email ?? "", password: password ?? "")
-//
-//            await MainActor.run {
-//                performSegue(withIdentifier: "showTreesSegue", sender: sender)
-//            }
-//        }
-        performSegue(withIdentifier: "showTreesSegue", sender: sender)
+        Task {
+            await databaseController?.logIn(email: email ?? "", password: password ?? "")
+
+            await MainActor.run {
+                performSegue(withIdentifier: "showTreesSegue", sender: sender)
+            }
+        }
     }
     /*
     // MARK: - Navigation
@@ -45,3 +59,4 @@ class LoginScreen: UIViewController {
     */
 
 }
+ 

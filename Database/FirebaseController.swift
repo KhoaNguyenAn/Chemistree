@@ -149,7 +149,7 @@ class FirebaseController: NSObject, DatabaseProtocol {
         }
     }
     
-    func signIn(email: String, password: String, name: String) async {
+    func signIn(email: String, password: String, name: String) async -> Bool {
         do {
             //let authDataResult = try await authController.signInAnonymously()
             let authDataResult = try await authController.createUser(withEmail: email, password: password)
@@ -166,11 +166,12 @@ class FirebaseController: NSObject, DatabaseProtocol {
                     print("Document successfully written!")
                 }
             }
-            
+            return true
             
         }
         catch {
-            fatalError("Firebase Authentication Failed with Error \(String(describing: error))")
+            return false
+            //fatalError("Firebase Authentication Failed with Error \(String(describing: error))")
             
         }
         
@@ -180,16 +181,20 @@ class FirebaseController: NSObject, DatabaseProtocol {
         
     }
     
-    func logIn(email: String, password: String) async {
+    func logIn(email: String, password: String) async -> Bool {
+        print("abc")
         do {
             //let authDataResult = try await authController.signInAnonymously()
             let authDataResult = try await authController.signIn(withEmail: email, password: password)
             //let authDataResult = try await authController.signIn(withEmail: "test@test.com", password: "test123")
             currentUser = authDataResult.user // contain userID
 //            FirebaseController.DEFAULT_TEAM_NAME = currentUser?.email ?? "Default Team"
+            return true
         }
         catch {
-            fatalError("Firebase Authentication Failed with Error \(String(describing: error))")
+            print("Firebase Authentication Failed with Error \(String(describing: error))")
+            return false
+            // fatalError("Firebase Authentication Failed with Error \(String(describing: error))")
         }
         await MainActor.run {
             self.setupTreeListener()

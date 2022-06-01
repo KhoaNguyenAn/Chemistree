@@ -31,7 +31,8 @@ class RegisterScreen: UIViewController, DatabaseListener {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        databaseController = appDelegate?.databaseController
         // Do any additional setup after loading the view.
     }
     
@@ -46,8 +47,15 @@ class RegisterScreen: UIViewController, DatabaseListener {
             return
         }
         
+        guard let databaseController = databaseController else {
+            fatalError("no database controller")
+        }
+        
         Task {
-            await databaseController?.signIn(email: email ?? "", password: password ?? "", name: name ?? "")
+            let out = await databaseController.signIn(email: email ?? "", password: password ?? "", name: name ?? "")
+            if out == false {
+                displayMessage(title: "Register fail", message: "")
+            }
             print("abc")
             
             await MainActor.run {

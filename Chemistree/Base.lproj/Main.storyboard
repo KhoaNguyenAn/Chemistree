@@ -194,7 +194,7 @@
             </objects>
             <point key="canvasLocation" x="879.71014492753625" y="89.732142857142847"/>
         </scene>
-        <!--Item-->
+        <!--Tree-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Chemistree" customModuleProvider="target" sceneMemberID="viewController">
@@ -203,7 +203,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="78b-Jt-jiD">
-                                <rect key="frame" x="20" y="710" width="374" height="66"/>
+                                <rect key="frame" x="20" y="690" width="374" height="66"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="tinted" title="Take picture of your trees"/>
@@ -215,7 +215,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="fml-lO-qY6"/>
+                    <tabBarItem key="tabBarItem" title="Tree" image="flame.fill" catalog="system" id="fml-lO-qY6"/>
                     <navigationItem key="navigationItem" id="E5a-CL-XC0"/>
                     <connections>
                         <segue destination="mEx-kM-CqF" kind="show" identifier="captureTreeSegue" id="a9Q-Vk-Uzc"/>
@@ -286,7 +286,7 @@
             </objects>
             <point key="canvasLocation" x="2496" y="687"/>
         </scene>
-        <!--Item 2-->
+        <!--Map-->
         <scene sceneID="oij-YM-I6b">
             <objects>
                 <viewController id="ArC-b7-ScR" customClass="MapScreen" customModule="Chemistree" customModuleProvider="target" sceneMemberID="viewController">
@@ -307,7 +307,7 @@
                             <constraint firstItem="cHK-ot-Pua" firstAttribute="bottom" secondItem="vpK-8l-OuJ" secondAttribute="bottom" id="rv4-cD-s7e"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="kd4-6c-nSH"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="location.circle.fill" catalog="system" id="kd4-6c-nSH"/>
                     <connections>
                         <outlet property="mapView" destination="vpK-8l-OuJ" id="U8d-HR-2hP"/>
                     </connections>
@@ -358,6 +358,8 @@
         <segue reference="O5B-sa-z37"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="flame.fill" catalog="system" width="108" height="128"/>
+        <image name="location.circle.fill" catalog="system" width="128" height="121"/>
         <image name="logo" width="656" height="718"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

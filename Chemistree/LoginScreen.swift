@@ -26,7 +26,8 @@ class LoginScreen: UIViewController, DatabaseListener {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        databaseController = appDelegate?.databaseController
         // Do any additional setup after loading the view.
     }
     
@@ -40,13 +41,27 @@ class LoginScreen: UIViewController, DatabaseListener {
         let email = emailField.text
         let password = passwordField.text
         
+        guard let databaseController = databaseController else {
+            fatalError("no database controller")
+        }
+        
         Task {
-            await databaseController?.logIn(email: email ?? "", password: password ?? "")
+            let out = await databaseController.logIn(email: email ?? "", password: password ?? "")
 
+            if out == false {
+                displayMessage(title: "Login fail", message: "")
+                return
+            }
             await MainActor.run {
                 performSegue(withIdentifier: "showTreesSegue", sender: sender)
             }
         }
+    }
+    
+    func displayMessage(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
     }
     /*
     // MARK: - Navigation

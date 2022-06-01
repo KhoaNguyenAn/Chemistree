@@ -10,7 +10,23 @@ import FirebaseStorage
 import Firebase
 import FirebaseFirestore
 
-class CameraScreen: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
+class CameraScreen: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate,
+                    DatabaseListener {
+    
+    func onUserChange(change: DatabaseChange, users: [User]) {
+        // do nothing
+    }
+    
+    func onAllTreesChange(change: DatabaseChange, trees: [Tree]) {
+        // do nothing
+    }
+    
+    func onAuthChange(change: DatabaseChange) {
+        // do nothing
+    }
+    
+    var listenerType: ListenerType = .auth
+    weak var databaseController: DatabaseProtocol?
     
     @IBOutlet weak var treeName: UITextField!
     
@@ -118,7 +134,7 @@ class CameraScreen: UIViewController, UIImagePickerControllerDelegate, UINavigat
                 )
             }
         }
-        
+        databaseController?.addTree(name: "abc", desc: "abcc", img: "aaa")
         
     }
 

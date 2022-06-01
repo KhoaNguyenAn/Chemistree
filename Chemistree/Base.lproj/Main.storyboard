@@ -20,7 +20,7 @@
                                 <rect key="frame" x="109" y="656" width="196" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="tinted" title="Login"/>
+                                <buttonConfiguration key="configuration" style="tinted" image="sparkle" catalog="system" title="  Login"/>
                                 <connections>
                                     <action selector="loginButton:" destination="cXb-Vp-kSX" eventType="touchUpInside" id="Y8x-hg-ajL"/>
                                 </connections>
@@ -29,7 +29,7 @@
                                 <rect key="frame" x="109" y="727" width="196" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Sign up"/>
+                                <buttonConfiguration key="configuration" style="filled" image="arrowshape.turn.up.forward.fill" catalog="system" title="  Sign up"/>
                                 <connections>
                                     <action selector="signUpButton:" destination="cXb-Vp-kSX" eventType="touchUpInside" id="YBG-zw-M0i"/>
                                 </connections>
@@ -103,14 +103,14 @@
                                 <rect key="frame" x="168" y="215" width="78" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" systemColor="systemBackgroundColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Full name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ncv-Lz-d9x">
                                 <rect key="frame" x="20" y="261" width="78" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" systemColor="systemBackgroundColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oqo-AD-XYH">
@@ -123,7 +123,7 @@
                                 <rect key="frame" x="20" y="359" width="46" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" systemColor="systemBackgroundColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XIx-E5-deg">
@@ -136,7 +136,7 @@
                                 <rect key="frame" x="20" y="470" width="78" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" systemColor="systemBackgroundColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="F1e-ty-Hr7">
@@ -149,7 +149,7 @@
                                 <rect key="frame" x="20" y="578" width="144" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" systemColor="systemBackgroundColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="V1K-kb-ehv">
@@ -162,7 +162,7 @@
                                 <rect key="frame" x="99" y="684" width="196" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="tinted" title="REGISTER"/>
+                                <buttonConfiguration key="configuration" style="tinted" image="sparkle" catalog="system" title=" REGISTER"/>
                                 <connections>
                                     <action selector="loginButton:" destination="cXb-Vp-kSX" eventType="touchUpInside" id="HUJ-GZ-g4S"/>
                                     <action selector="registerButton:" destination="e25-gY-pXF" eventType="touchUpInside" id="tDq-7D-eXw"/>
@@ -172,7 +172,7 @@
                                 <rect key="frame" x="76" y="748" width="262" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Have account ? Sign in"/>
+                                <buttonConfiguration key="configuration" style="filled" image="arrowshape.turn.up.backward.fill" catalog="system" title="  Have account ? Sign in"/>
                                 <connections>
                                     <action selector="backToSignIn:" destination="e25-gY-pXF" eventType="touchUpInside" id="rEE-cG-Gfz"/>
                                 </connections>
@@ -206,7 +206,7 @@
                                 <rect key="frame" x="20" y="687" width="363" height="66"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="tinted" title="Take picture of your trees"/>
+                                <buttonConfiguration key="configuration" style="tinted" image="camera.fill" catalog="system" title="  Take picture of your trees"/>
                                 <connections>
                                     <action selector="takePic:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fs5-go-SUs"/>
                                 </connections>
@@ -241,7 +241,7 @@
                                 <rect key="frame" x="100" y="766" width="215" height="49"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="tinted" title="Upload your tree"/>
+                                <buttonConfiguration key="configuration" style="tinted" image="square.and.arrow.up.on.square.fill" catalog="system" title="Upload your tree"/>
                                 <connections>
                                     <action selector="uploadYourTree:" destination="mEx-kM-CqF" eventType="touchUpInside" id="Jem-El-o6k"/>
                                 </connections>
@@ -364,13 +364,18 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Nnt-WY-aoG"/>
+        <segue reference="O5B-sa-z37"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="arrowshape.turn.up.backward.fill" catalog="system" width="128" height="106"/>
+        <image name="arrowshape.turn.up.forward.fill" catalog="system" width="128" height="106"/>
+        <image name="camera.fill" catalog="system" width="128" height="94"/>
         <image name="globe.asia.australia.fill" catalog="system" width="128" height="121"/>
         <image name="leaf.fill" catalog="system" width="128" height="106"/>
         <image name="logo" width="656" height="718"/>
         <image name="mappin.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="sparkle" catalog="system" width="128" height="121"/>
+        <image name="square.and.arrow.up.on.square.fill" catalog="system" width="117" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

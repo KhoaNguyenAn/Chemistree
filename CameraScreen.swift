@@ -9,9 +9,10 @@ import UIKit
 import FirebaseStorage
 import Firebase
 import FirebaseFirestore
+import CoreLocation
 
 class CameraScreen: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate,
-                    DatabaseListener {
+                    DatabaseListener, CLLocationManagerDelegate {
     
     func onUserChange(change: DatabaseChange, users: [User]) {
         // do nothing
@@ -27,6 +28,7 @@ class CameraScreen: UIViewController, UIImagePickerControllerDelegate, UINavigat
     
     var listenerType: ListenerType = .auth
     weak var databaseController: DatabaseProtocol?
+    var locationManager = CLLocationManager()
     
     @IBOutlet weak var treeName: UITextField!
     
@@ -91,6 +93,13 @@ class CameraScreen: UIViewController, UIImagePickerControllerDelegate, UINavigat
         imageView.image = image
         
     }
+    
+    @IBAction func takeLocation(_ sender: Any) {
+        self.locationManager.requestWhenInUseAuthorization()
+        guard let locationValue: CLLocationCoordinate2D = locationManager.location?.coordinate else { return }
+        print(locationValue)
+    }
+
     
     func uploadImageToFirebase() {
         // Make sure that the selected image isn't nil

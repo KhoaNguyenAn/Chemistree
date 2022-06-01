@@ -166,6 +166,11 @@ class FirebaseController: NSObject, DatabaseProtocol {
                     print("Document successfully written!")
                 }
             }
+            
+            await MainActor.run {
+                self.setupTreeListener()
+            }
+            
             return true
             
         }
@@ -174,11 +179,7 @@ class FirebaseController: NSObject, DatabaseProtocol {
             //fatalError("Firebase Authentication Failed with Error \(String(describing: error))")
             
         }
-        
-        await MainActor.run {
-            self.setupTreeListener()
-        }
-        
+
     }
     
     func logIn(email: String, password: String) async -> Bool {
@@ -189,16 +190,16 @@ class FirebaseController: NSObject, DatabaseProtocol {
             //let authDataResult = try await authController.signIn(withEmail: "test@test.com", password: "test123")
             currentUser = authDataResult.user // contain userID
 //            FirebaseController.DEFAULT_TEAM_NAME = currentUser?.email ?? "Default Team"
+            await MainActor.run {
+                self.setupTreeListener()
+                print(currentUser?.uid ?? "none")
+            }
             return true
         }
         catch {
             print("Firebase Authentication Failed with Error \(String(describing: error))")
             return false
             // fatalError("Firebase Authentication Failed with Error \(String(describing: error))")
-        }
-        await MainActor.run {
-            self.setupTreeListener()
-            print(currentUser?.uid ?? "none")
         }
         //userRef = database.collection(currentUser?.uid ?? "")
     }

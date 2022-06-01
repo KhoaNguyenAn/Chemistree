@@ -194,7 +194,7 @@
             </objects>
             <point key="canvasLocation" x="879.71014492753625" y="89.732142857142847"/>
         </scene>
-        <!--Tree-->
+        <!--Forest-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Chemistree" customModuleProvider="target" sceneMemberID="viewController">
@@ -203,7 +203,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="78b-Jt-jiD">
-                                <rect key="frame" x="20" y="690" width="374" height="66"/>
+                                <rect key="frame" x="20" y="687" width="363" height="66"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="tinted" title="Take picture of your trees"/>
@@ -215,7 +215,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Tree" image="flame.fill" catalog="system" id="fml-lO-qY6"/>
+                    <tabBarItem key="tabBarItem" title="Forest" image="leaf.fill" catalog="system" id="fml-lO-qY6"/>
                     <navigationItem key="navigationItem" id="E5a-CL-XC0"/>
                     <connections>
                         <segue destination="mEx-kM-CqF" kind="show" identifier="captureTreeSegue" id="a9Q-Vk-Uzc"/>
@@ -223,7 +223,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1684" y="686"/>
+            <point key="canvasLocation" x="1682.608695652174" y="685.71428571428567"/>
         </scene>
         <!--Camera Screen-->
         <scene sceneID="lJk-TA-TBy">
@@ -258,6 +258,15 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Spr-uI-m2e">
+                                <rect key="frame" x="109" y="668" width="194" height="47"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" image="mappin.circle.fill" catalog="system" title="  Take current location"/>
+                                <connections>
+                                    <action selector="takeLocation:" destination="mEx-kM-CqF" eventType="touchUpInside" id="URi-47-gL0"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ewV-Ks-Uyg"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -284,7 +293,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuH-qO-2UX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2496" y="687"/>
+            <point key="canvasLocation" x="2494.202898550725" y="686.38392857142856"/>
         </scene>
         <!--Map-->
         <scene sceneID="oij-YM-I6b">
@@ -307,7 +316,7 @@
                             <constraint firstItem="cHK-ot-Pua" firstAttribute="bottom" secondItem="vpK-8l-OuJ" secondAttribute="bottom" id="rv4-cD-s7e"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Map" image="location.circle.fill" catalog="system" id="kd4-6c-nSH"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="globe.asia.australia.fill" catalog="system" id="kd4-6c-nSH"/>
                     <connections>
                         <outlet property="mapView" destination="vpK-8l-OuJ" id="U8d-HR-2hP"/>
                     </connections>
@@ -358,9 +367,10 @@
         <segue reference="O5B-sa-z37"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="flame.fill" catalog="system" width="108" height="128"/>
-        <image name="location.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="globe.asia.australia.fill" catalog="system" width="128" height="121"/>
+        <image name="leaf.fill" catalog="system" width="128" height="106"/>
         <image name="logo" width="656" height="718"/>
+        <image name="mappin.circle.fill" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -12,6 +12,7 @@
 		4900ECB7282E22680077994B /* NewLocationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4900ECB6282E22680077994B /* NewLocationDelegate.swift */; };
 		4900ECBD282E2FDE0077994B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4900ECBC282E2FDD0077994B /* Assets.xcassets */; };
 		490B804F282F7FD10020D69E /* CameraScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490B804E282F7FD10020D69E /* CameraScreen.swift */; };
+		4911255D284734FA0086CB47 /* UIViewDisplayMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4911255C284734FA0086CB47 /* UIViewDisplayMessage.swift */; };
 		49225DDC282D22A600993A22 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49225DDB282D22A600993A22 /* CardView.swift */; };
 		49225DDE282D22E600993A22 /* EmojiOptionsOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49225DDD282D22E600993A22 /* EmojiOptionsOverlay.swift */; };
 		49225DE0282D232500993A22 /* ImageCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49225DDF282D232500993A22 /* ImageCard.swift */; };
@@ -41,6 +42,7 @@
 		4900ECB6282E22680077994B /* NewLocationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewLocationDelegate.swift; sourceTree = "<group>"; };
 		4900ECBC282E2FDD0077994B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Chemistree/Assets.xcassets; sourceTree = "<group>"; };
 		490B804E282F7FD10020D69E /* CameraScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraScreen.swift; sourceTree = "<group>"; };
+		4911255C284734FA0086CB47 /* UIViewDisplayMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewDisplayMessage.swift; sourceTree = "<group>"; };
 		49225DDB282D22A600993A22 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CardView.swift; path = Chemistree/CardView.swift; sourceTree = "<group>"; };
 		49225DDD282D22E600993A22 /* EmojiOptionsOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EmojiOptionsOverlay.swift; path = Chemistree/EmojiOptionsOverlay.swift; sourceTree = "<group>"; };
 		49225DDF282D232500993A22 /* ImageCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageCard.swift; path = Chemistree/ImageCard.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 		493B2DD0282D204700BC4B7E /* Chemistree */ = {
 			isa = PBXGroup;
 			children = (
+				4911255C284734FA0086CB47 /* UIViewDisplayMessage.swift */,
 				493B2DD1282D204700BC4B7E /* AppDelegate.swift */,
 				493B2DD3282D204700BC4B7E /* SceneDelegate.swift */,
 				493B2DD7282D204700BC4B7E /* Main.storyboard */,
@@ -217,6 +220,7 @@
 				494DBB1428377105007200BA /* DatabaseProtocol.swift in Sources */,
 				494DBB0F28376729007200BA /* RegisterScreen.swift in Sources */,
 				4900ECB1282E1F570077994B /* MapScreen.swift in Sources */,
+				4911255D284734FA0086CB47 /* UIViewDisplayMessage.swift in Sources */,
 				494DBB1A28377331007200BA /* User.swift in Sources */,
 				493B2DD6282D204700BC4B7E /* ViewController.swift in Sources */,
 				494DBB1C28377451007200BA /* Tree.swift in Sources */,

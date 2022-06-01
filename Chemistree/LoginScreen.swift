@@ -26,6 +26,7 @@ class LoginScreen: UIViewController, DatabaseListener {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor(red: 197/255, green: 214/255, blue: 217/255, alpha: 1.0)
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         databaseController = appDelegate?.databaseController
         // Do any additional setup after loading the view.
@@ -58,11 +59,6 @@ class LoginScreen: UIViewController, DatabaseListener {
         }
     }
     
-    func displayMessage(title: String, message: String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
-        self.present(alertController, animated: true, completion: nil)
-    }
     /*
     // MARK: - Navigation
 

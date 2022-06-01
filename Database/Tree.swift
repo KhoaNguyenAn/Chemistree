@@ -15,6 +15,8 @@ class Tree: NSObject, Codable {
     var name: String?
     var desc: String?
     var image: String?
+    var lat: String?
+    var log: String?
 }
 
 //enum CodeingKeys: String, CodingKey {

@@ -34,8 +34,11 @@ class CameraScreen: UIViewController, UIImagePickerControllerDelegate, UINavigat
     
     @IBOutlet weak var treeDescription: UITextField!
     var imagePick : UIImage! = nil
+    var check : Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
+        check = false
+        self.view.backgroundColor = UIColor(red: 197/255, green: 214/255, blue: 217/255, alpha: 1.0)
 
         // Do any additional setup after loading the view.
 
@@ -43,7 +46,7 @@ class CameraScreen: UIViewController, UIImagePickerControllerDelegate, UINavigat
 //        picker.sourceType = .camera
 //        picker.delegate = self
 //        present(picker, animated: true)
-        imageView.backgroundColor = UIColor(red: 197/255, green: 214/255, blue: 217/255, alpha: 1.0)
+        imageView.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
     }
     
     @IBOutlet weak var imageView: UIImageView!
@@ -96,8 +99,23 @@ class CameraScreen: UIViewController, UIImagePickerControllerDelegate, UINavigat
     
     @IBAction func takeLocation(_ sender: Any) {
         self.locationManager.requestWhenInUseAuthorization()
-        guard let locationValue: CLLocationCoordinate2D = locationManager.location?.coordinate else { return }
-        print(locationValue)
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        }
+//        guard let locationValue: CLLocationCoordinate2D = locationManager.location?.coordinate else { return }
+//        print("locations = \(locationValue.latitude) \(locationValue.longitude)")
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if check == false {
+            guard let locationValue: CLLocationCoordinate2D = locationManager.location?.coordinate
+                    else { return }
+            print("locations = \(locationValue.latitude) \(locationValue.longitude)")
+            check = true
+        }
+        return
     }
 
     
@@ -108,6 +126,11 @@ class CameraScreen: UIViewController, UIImagePickerControllerDelegate, UINavigat
         }
         
         guard treeName != nil else {
+            return
+        }
+        
+        if check == false {
+            displayMessage(title: "Missing tree location", message: "Please take your tree location")
             return
         }
         
@@ -146,5 +169,12 @@ class CameraScreen: UIViewController, UIImagePickerControllerDelegate, UINavigat
         databaseController?.addTree(name: "abc", desc: "abcc", img: "aaa")
         
     }
-
+    
+    override func viewDidAppear(_ animated: Bool) {
+        check = false
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        check = false
+    }
 }

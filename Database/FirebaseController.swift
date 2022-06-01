@@ -52,11 +52,13 @@ class FirebaseController: NSObject, DatabaseProtocol {
         listeners.removeDelegate(listener)
     }
     
-    func addTree(name: String, desc: String, img: String) -> Tree {
+    func addTree(name: String, desc: String, img: String, lat: Double, log: Double) -> Tree {
         let tree = Tree()
         tree.name = name
         tree.desc = desc
         tree.image = img
+        tree.lat = lat
+        tree.log = log
         
         do {
             if let treesRef = try treesRef?.addDocument(from: tree) {

@@ -29,6 +29,8 @@ class CameraScreen: UIViewController, UIImagePickerControllerDelegate, UINavigat
     var listenerType: ListenerType = .auth
     weak var databaseController: DatabaseProtocol?
     var locationManager = CLLocationManager()
+    var longitude : Double?
+    var latitude : Double?
     
     @IBOutlet weak var treeName: UITextField!
     
@@ -39,6 +41,8 @@ class CameraScreen: UIViewController, UIImagePickerControllerDelegate, UINavigat
         super.viewDidLoad()
         check = false
         self.view.backgroundColor = UIColor(red: 197/255, green: 214/255, blue: 217/255, alpha: 1.0)
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        databaseController = appDelegate?.databaseController
 
         // Do any additional setup after loading the view.
 
@@ -112,7 +116,9 @@ class CameraScreen: UIViewController, UIImagePickerControllerDelegate, UINavigat
         if check == false {
             guard let locationValue: CLLocationCoordinate2D = locationManager.location?.coordinate
                     else { return }
-            print("locations = \(locationValue.latitude) \(locationValue.longitude)")
+//            print("locations = \(locationValue.latitude) \(locationValue.longitude)")
+            self.latitude = locationValue.latitude
+            self.longitude = locationValue.longitude
             check = true
         }
         return
@@ -122,10 +128,12 @@ class CameraScreen: UIViewController, UIImagePickerControllerDelegate, UINavigat
     func uploadImageToFirebase() {
         // Make sure that the selected image isn't nil
         guard imagePick != nil else {
+            displayMessage(title: "Missing tree image", message: "Please upload tree image")
             return
         }
         
         guard treeName != nil else {
+            displayMessage(title: "Missing tree name", message: "Please upload tree name")
             return
         }
         
@@ -158,15 +166,28 @@ class CameraScreen: UIViewController, UIImagePickerControllerDelegate, UINavigat
             if error == nil && metadata != nil {
                 
                 //TODO: Save a reference to the file in Firestore DB
-                let db = Firestore.firestore()
-                db.collection("trees").document().setData(
-                    ["name": self.treeName.text!,
-                     "desc": self.treeDescription.text!,
-                     "url_img": path]
+                
+
+                guard let databaseController = self.databaseController else {
+                    fatalError("no database controller")
+                }
+                
+                databaseController.addTree(
+                    name: self.treeName.text!,
+                    desc: self.treeDescription.text!,
+                    img: path,
+                    lat: self.latitude!,
+                    log: self.longitude!
                 )
+
+//                let db = Firestore.firestore()
+//                db.collection("trees").document().setData(
+//                    ["name": self.treeName.text!,
+//                     "desc": self.treeDescription.text!,
+//                     "url_img": path]
+//                )
             }
         }
-        databaseController?.addTree(name: "abc", desc: "abcc", img: "aaa")
         
     }
     

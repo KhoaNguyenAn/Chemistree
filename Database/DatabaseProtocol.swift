@@ -34,7 +34,7 @@ protocol DatabaseProtocol: AnyObject {
     func addListener(listener: DatabaseListener)
     func removeListener(listener: DatabaseListener)
 
-    func addTree(name: String, desc :String, img: String) -> Tree
+    func addTree(name: String, desc :String, img: String, lat: Double, log: Double) -> Tree
     func logIn(email: String, password: String) async -> Bool 
     func signIn(email: String, password: String, name: String) async -> Bool 
 }

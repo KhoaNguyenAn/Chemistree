@@ -197,5 +197,8 @@ class CameraScreen: UIViewController, UIImagePickerControllerDelegate, UINavigat
     
     override func viewDidDisappear(_ animated: Bool) {
         check = false
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//        let managedContext = appDelegate.managedObjectContext
+
     }
 }

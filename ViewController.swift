@@ -29,11 +29,15 @@ class ViewController: UIViewController, DatabaseListener {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.view.subviews.forEach({ $0.removeFromSuperview() })
+        cards = [ImageCard]()
         super.viewWillAppear(animated)
         databaseController?.addListener(listener: self)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        self.view.subviews.forEach({ $0.removeFromSuperview() })
+        cards = [ImageCard]()
         super.viewWillDisappear(animated)
         databaseController?.removeListener(listener: self)
     }
@@ -46,6 +50,7 @@ class ViewController: UIViewController, DatabaseListener {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.subviews.forEach({ $0.removeFromSuperview() })
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         databaseController = appDelegate?.databaseController
         
@@ -57,38 +62,17 @@ class ViewController: UIViewController, DatabaseListener {
         // Create tree list
         if currentTree.count != 0 {
             
-            Task {
-                
-                await retrievedData()
-                
-                // *************
-                
-                // 1. create a deck of cards
-                // 20 cards for demonstrational purposes - once the cards run out, just re-run the project to start over
-                // of course, you could always add new cards to self.cards and call layoutCards() again
-                for i in 1...currentTree.count {
-                    let card = ImageCard(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 60, height: self.view.frame.height * 0.6), img: self.retrievedImages[i-1])
-                    cards.append(card)
-                }
-                
-                // 2. layout the first 4 cards for the user
-                layoutCards()
-                
-                // 3. set up the (non-interactive) emoji options overlay
-                emojiOptionsOverlay = EmojiOptionsOverlay(frame: self.view.frame)
-                self.view.addSubview(emojiOptionsOverlay)
-            }
+            retrievedData()
         }
     }
     
-    func retrievedData() async {
+    func retrievedData() {
         do {
             var paths = [String] ()
             for tree in currentTree {
                 paths.append(tree.image!)
             }
             
-            let group = DispatchGroup()
             // Loop through each file path and fetch the data from storage
             for path in paths {
                 
@@ -98,28 +82,32 @@ class ViewController: UIViewController, DatabaseListener {
                 // Specify the path
                 let fileRef = storageRef.child(path)
                 
-                group.enter()
                 // Retrieve the data
-                try await fileRef.getData(maxSize: 5 * 1024 * 1024) { data, error in
+                fileRef.getData(maxSize: 5 * 1024 * 1024) { data, error in
                     
                     // Check for errors
                     if error == nil && data != nil {
                         
                         // Create a UIImage and put it into our array for display
                         if let image = UIImage(data: data!) {
+                            // *************
                             
-                            DispatchQueue.main.async {
-                                self.retrievedImages.append(image)
-                                group.leave()
-                            }
+                            // 1. create a deck of cards
+                            // 20 cards for demonstrational purposes - once the cards run out, just re-run the project to start over
+                            // of course, you could always add new cards to self.cards and call layoutCards() again
+                            let card = ImageCard(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 60, height: self.view.frame.height * 0.6), img: image)
+                            self.cards.append(card)
+                            
+                            // 2. layout the first 4 cards for the user
+                            self.layoutCards()
+                            
+                            // 3. set up the (non-interactive) emoji options overlay
+                            self.emojiOptionsOverlay = EmojiOptionsOverlay(frame: self.view.frame)
+                            self.view.addSubview(self.emojiOptionsOverlay)
                         }
                     }
                 }
             }
-            group.wait()
-        }
-        catch {
-            return
         }
     }
     
@@ -142,6 +130,10 @@ class ViewController: UIViewController, DatabaseListener {
     
     /// Set up the frames, alphas, and transforms of the first 4 cards on the screen
     func layoutCards() {
+        if view.subviews.count > 0 {
+            view.subviews.forEach({ $0.removeFromSuperview()})
+        }
+        
         // frontmost card (first card of the deck)
         let firstCard = cards[0]
         self.view.addSubview(firstCard)

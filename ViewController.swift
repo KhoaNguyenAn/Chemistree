@@ -21,7 +21,7 @@ class ViewController: UIViewController, DatabaseListener {
     func onAllTreesChange(change: DatabaseChange, trees: [Tree]) {
         currentTree = trees
         self.viewDidLoad()
-        self.viewWillAppear(true)
+        //        self.viewWillAppear(true)
     }
     
     func onAuthChange(change: DatabaseChange) {
@@ -55,12 +55,40 @@ class ViewController: UIViewController, DatabaseListener {
         
         // TODO: Get image
         // Create tree list
-        if currentTree.isEmpty {
+        if currentTree.count != 0 {
+            
+            Task {
+                
+                await retrievedData()
+                
+                // *************
+                
+                // 1. create a deck of cards
+                // 20 cards for demonstrational purposes - once the cards run out, just re-run the project to start over
+                // of course, you could always add new cards to self.cards and call layoutCards() again
+                for i in 1...currentTree.count {
+                    let card = ImageCard(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 60, height: self.view.frame.height * 0.6), img: self.retrievedImages[i-1])
+                    cards.append(card)
+                }
+                
+                // 2. layout the first 4 cards for the user
+                layoutCards()
+                
+                // 3. set up the (non-interactive) emoji options overlay
+                emojiOptionsOverlay = EmojiOptionsOverlay(frame: self.view.frame)
+                self.view.addSubview(emojiOptionsOverlay)
+            }
+        }
+    }
+    
+    func retrievedData() async {
+        do {
             var paths = [String] ()
             for tree in currentTree {
                 paths.append(tree.image!)
             }
             
+            let group = DispatchGroup()
             // Loop through each file path and fetch the data from storage
             for path in paths {
                 
@@ -70,8 +98,9 @@ class ViewController: UIViewController, DatabaseListener {
                 // Specify the path
                 let fileRef = storageRef.child(path)
                 
+                group.enter()
                 // Retrieve the data
-                fileRef.getData(maxSize: 5 * 1024 * 1024) { data, error in
+                try await fileRef.getData(maxSize: 5 * 1024 * 1024) { data, error in
                     
                     // Check for errors
                     if error == nil && data != nil {
@@ -81,35 +110,21 @@ class ViewController: UIViewController, DatabaseListener {
                             
                             DispatchQueue.main.async {
                                 self.retrievedImages.append(image)
+                                group.leave()
                             }
                         }
                     }
                 }
             }
-            
-            // *************
-            
-            // 1. create a deck of cards
-            // 20 cards for demonstrational purposes - once the cards run out, just re-run the project to start over
-            // of course, you could always add new cards to self.cards and call layoutCards() again
-            for _ in 1...20 {
-                let card = ImageCard(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 60, height: self.view.frame.height * 0.6))
-                cards.append(card)
-            }
-            
-            // 2. layout the first 4 cards for the user
-            layoutCards()
-            
-            // 3. set up the (non-interactive) emoji options overlay
-            emojiOptionsOverlay = EmojiOptionsOverlay(frame: self.view.frame)
-            self.view.addSubview(emojiOptionsOverlay)
+            group.wait()
+        }
+        catch {
+            return
         }
     }
     
     
-    func abc() {
-        print("abc")
-    }
+    
     @IBAction func takePic(_ sender: Any) {
         
         

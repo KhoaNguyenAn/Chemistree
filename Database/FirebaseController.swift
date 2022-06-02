@@ -86,7 +86,7 @@ class FirebaseController: NSObject, DatabaseProtocol {
     }
     
     func setupUserListener() {
-        userRef = database.collection("users")
+        userRef = database.collection("user")
         
         userRef?.addSnapshotListener() {
             

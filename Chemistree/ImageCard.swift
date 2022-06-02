@@ -9,12 +9,12 @@ import UIKit
 
 class ImageCard: CardView {
 
-    override init(frame: CGRect) {
+    init(frame: CGRect, img: UIImage) {
         super.init(frame: frame)
         
         // image
         
-        let imageView = UIImageView(image: UIImage(named: "trees"))
+        let imageView = UIImageView(image: img)
         imageView.contentMode = .scaleAspectFill
         imageView.backgroundColor = UIColor(red: 67/255, green: 79/255, blue: 182/255, alpha: 1.0)
 //        imageView.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)

@@ -6,8 +6,37 @@
 //
 
 import UIKit
+import FirebaseStorage
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, DatabaseListener {
+    var listenerType: ListenerType = .all
+    weak var databaseController: DatabaseProtocol?
+    var currentTree: [Tree] = []
+    var retrievedImages = [UIImage] ()
+    
+    func onUserChange(change: DatabaseChange, users: [User]) {
+        // do nothing
+    }
+    
+    func onAllTreesChange(change: DatabaseChange, trees: [Tree]) {
+        currentTree = trees
+        self.viewDidLoad()
+        self.viewWillAppear(true)
+    }
+    
+    func onAuthChange(change: DatabaseChange) {
+        // do nothing
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        databaseController?.addListener(listener: self)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        databaseController?.removeListener(listener: self)
+    }
     
     /// Data structure for custom cards - in this example, we're using an array of ImageCards
     var cards = [ImageCard]()
@@ -17,24 +46,64 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        databaseController = appDelegate?.databaseController
+        
         self.view.backgroundColor = UIColor(red: 197/255, green: 214/255, blue: 217/255, alpha: 1.0)
         dynamicAnimator = UIDynamicAnimator(referenceView: self.view)
         setUpDummyUI()
         
-        // 1. create a deck of cards
-        // 20 cards for demonstrational purposes - once the cards run out, just re-run the project to start over
-        // of course, you could always add new cards to self.cards and call layoutCards() again
-        for _ in 1...20 {
-            let card = ImageCard(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 60, height: self.view.frame.height * 0.6))
-            cards.append(card)
+        // TODO: Get image
+        // Create tree list
+        if currentTree.isEmpty {
+            var paths = [String] ()
+            for tree in currentTree {
+                paths.append(tree.image!)
+            }
+            
+            // Loop through each file path and fetch the data from storage
+            for path in paths {
+                
+                // Get a reference to storage
+                let storageRef = Storage.storage().reference()
+                
+                // Specify the path
+                let fileRef = storageRef.child(path)
+                
+                // Retrieve the data
+                fileRef.getData(maxSize: 5 * 1024 * 1024) { data, error in
+                    
+                    // Check for errors
+                    if error == nil && data != nil {
+                        
+                        // Create a UIImage and put it into our array for display
+                        if let image = UIImage(data: data!) {
+                            
+                            DispatchQueue.main.async {
+                                self.retrievedImages.append(image)
+                            }
+                        }
+                    }
+                }
+            }
+            
+            // *************
+            
+            // 1. create a deck of cards
+            // 20 cards for demonstrational purposes - once the cards run out, just re-run the project to start over
+            // of course, you could always add new cards to self.cards and call layoutCards() again
+            for _ in 1...20 {
+                let card = ImageCard(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 60, height: self.view.frame.height * 0.6))
+                cards.append(card)
+            }
+            
+            // 2. layout the first 4 cards for the user
+            layoutCards()
+            
+            // 3. set up the (non-interactive) emoji options overlay
+            emojiOptionsOverlay = EmojiOptionsOverlay(frame: self.view.frame)
+            self.view.addSubview(emojiOptionsOverlay)
         }
-        
-        // 2. layout the first 4 cards for the user
-        layoutCards()
-        
-        // 3. set up the (non-interactive) emoji options overlay
-        emojiOptionsOverlay = EmojiOptionsOverlay(frame: self.view.frame)
-        self.view.addSubview(emojiOptionsOverlay)
     }
     
     
@@ -42,14 +111,14 @@ class ViewController: UIViewController {
         print("abc")
     }
     @IBAction func takePic(_ sender: Any) {
-
+        
         
         performSegue(withIdentifier: "captureTreeSegue", sender: sender)
-//
-//        let picker = UIImagePickerController()
-//        picker.sourceType = .camera
-//        picker.delegate = self
-//        present(picker, animated: true)
+        //
+        //        let picker = UIImagePickerController()
+        //        picker.sourceType = .camera
+        //        picker.delegate = self
+        //        present(picker, animated: true)
     }
     
     /// Scale and alpha of successive cards visible to the user
@@ -323,25 +392,25 @@ class ViewController: UIViewController {
 // MARK: - Unrelated to cards logic code
 extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-
     
-//    /// Hide status bar
+    
+    //    /// Hide status bar
     override var prefersStatusBarHidden: Bool {
         get {
             return true
         }
     }
     
-
+    
     
     /// Dummy UI
     func setUpDummyUI() {
         // menu icon
-//        let menuIconImageView = UIImageView(image: UIImage(named: "menu_icon"))
-//        menuIconImageView.contentMode = .scaleAspectFit
-//        menuIconImageView.frame = CGRect(x: 35, y: 30, width: 35, height: 30)
-//        menuIconImageView.isUserInteractionEnabled = false
-//        self.view.addSubview(menuIconImageView)
+        //        let menuIconImageView = UIImageView(image: UIImage(named: "menu_icon"))
+        //        menuIconImageView.contentMode = .scaleAspectFit
+        //        menuIconImageView.frame = CGRect(x: 35, y: 30, width: 35, height: 30)
+        //        menuIconImageView.isUserInteractionEnabled = false
+        //        self.view.addSubview(menuIconImageView)
         
         // title label
         let titleLabel = UILabel()
@@ -354,27 +423,27 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
         self.view.addSubview(titleLabel)
         
         // REACT
-//        let reactLabel = UILabel()
-//        reactLabel.text = "REACT"
-//        reactLabel.font = UIFont(name: "AvenirNextCondensed-Heavy", size: 28)
-//        reactLabel.textColor = UIColor(red: 54/255, green: 72/255, blue: 149/255, alpha: 1.0)
-//        reactLabel.textAlignment = .center
-//        reactLabel.frame = CGRect(x: (self.view.frame.width / 2) - 60, y: self.view.frame.height - 70, width: 120, height: 50)
-//        self.view.addSubview(reactLabel)
+        //        let reactLabel = UILabel()
+        //        reactLabel.text = "REACT"
+        //        reactLabel.font = UIFont(name: "AvenirNextCondensed-Heavy", size: 28)
+        //        reactLabel.textColor = UIColor(red: 54/255, green: 72/255, blue: 149/255, alpha: 1.0)
+        //        reactLabel.textAlignment = .center
+        //        reactLabel.frame = CGRect(x: (self.view.frame.width / 2) - 60, y: self.view.frame.height - 70, width: 120, height: 50)
+        //        self.view.addSubview(reactLabel)
         
-//        // <- ☹️
-//        let frownArrowImageView = UIImageView(image: UIImage(named: "frown_arrow"))
-//        frownArrowImageView.contentMode = .scaleAspectFit
-//        frownArrowImageView.frame = CGRect(x: (self.view.frame.width / 2) - 140, y: self.view.frame.height - 70, width: 80, height: 50)
-//        frownArrowImageView.isUserInteractionEnabled = false
-//        self.view.addSubview(frownArrowImageView)
-//
-//        // 🙂 ->
-//        let smileArrowImageView = UIImageView(image: UIImage(named: "smile_arrow"))
-//        smileArrowImageView.contentMode = .scaleAspectFit
-//        smileArrowImageView.frame = CGRect(x: (self.view.frame.width / 2) + 60, y: self.view.frame.height - 70, width: 80, height: 50)
-//        smileArrowImageView.isUserInteractionEnabled = false
-//        self.view.addSubview(smileArrowImageView)
+        //        // <- ☹️
+        //        let frownArrowImageView = UIImageView(image: UIImage(named: "frown_arrow"))
+        //        frownArrowImageView.contentMode = .scaleAspectFit
+        //        frownArrowImageView.frame = CGRect(x: (self.view.frame.width / 2) - 140, y: self.view.frame.height - 70, width: 80, height: 50)
+        //        frownArrowImageView.isUserInteractionEnabled = false
+        //        self.view.addSubview(frownArrowImageView)
+        //
+        //        // 🙂 ->
+        //        let smileArrowImageView = UIImageView(image: UIImage(named: "smile_arrow"))
+        //        smileArrowImageView.contentMode = .scaleAspectFit
+        //        smileArrowImageView.frame = CGRect(x: (self.view.frame.width / 2) + 60, y: self.view.frame.height - 70, width: 80, height: 50)
+        //        smileArrowImageView.isUserInteractionEnabled = false
+        //        self.view.addSubview(smileArrowImageView)
     }
 }
 

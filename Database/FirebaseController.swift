@@ -123,7 +123,6 @@ class FirebaseController: NSObject, DatabaseProtocol {
             do {
                 parsedTree = try change.document.data(as: Tree.self)
             } catch {
-                print("Unable to decode hero. Is the hero malformed?")
                 return
             }
             

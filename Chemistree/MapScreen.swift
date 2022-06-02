@@ -9,15 +9,45 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class MapScreen: UIViewController, CLLocationManagerDelegate {
+class MapScreen: UIViewController, CLLocationManagerDelegate, DatabaseListener {
+    
+    func onUserChange(change: DatabaseChange, users: [User]) {
+        // do nothing
+    }
+    
+    func onAllTreesChange(change: DatabaseChange, trees: [Tree]) {
+        currentTree = trees
+        self.viewDidLoad()
+        self.viewWillAppear(true)
+    }
+    
+    func onAuthChange(change: DatabaseChange) {
+        // do nothing
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        databaseController?.addListener(listener: self)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        databaseController?.removeListener(listener: self)
+    }
+    
     
     @IBOutlet weak var mapView: MKMapView!
     var manager = CLLocationManager()
-    
+    var listenerType: ListenerType = .all
+    weak var databaseController: DatabaseProtocol?
+    var currentTree: [Tree] = []
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(red: 197/255, green: 214/255, blue: 217/255, alpha: 1.0)
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        databaseController = appDelegate?.databaseController
 //        mapView.ignoresS
         // Do any additional setup after loading the view.
     }

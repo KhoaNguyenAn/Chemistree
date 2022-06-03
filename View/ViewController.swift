@@ -13,7 +13,7 @@ class ViewController: UIViewController, DatabaseListener {
     weak var databaseController: DatabaseProtocol?
     var currentTree: [Tree] = []
     var retrievedImages = [UIImage] ()
-    
+    var checkDisplay: Bool = false
     @IBOutlet weak var takePicButton: UIButton!
     func onUserChange(change: DatabaseChange, users: [User]) {
         // do nothing
@@ -37,6 +37,7 @@ class ViewController: UIViewController, DatabaseListener {
                 }
                 if count == trees.count {
                     self.startLoading()
+                    self.checkDisplay = false
                     self.currentTree = trees
                     let appDelegate = UIApplication.shared.delegate as? AppDelegate
                     self.databaseController = appDelegate?.databaseController
@@ -68,6 +69,7 @@ class ViewController: UIViewController, DatabaseListener {
         self.view.addSubview(takePicButton)
         databaseController?.addListener(listener: self)
         if checkNew == false {
+            self.checkDisplay = false
             self.viewDidLoad()
         }
     }
@@ -86,6 +88,7 @@ class ViewController: UIViewController, DatabaseListener {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.checkDisplay = false
         startLoading()
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         databaseController = appDelegate?.databaseController
@@ -119,31 +122,37 @@ class ViewController: UIViewController, DatabaseListener {
     
     func retrievedData() {
         do {
-            var paths = [String] ()
+            var paths:[(name: String, value: Int)] = []
+            var i = 0
             for tree in currentTree {
-                paths.append(tree.image!)
+                paths.append((tree.image!, i))
+                i = i + 1
             }
-            
             // Loop through each file path and fetch the data from storage
             for path in paths {
-                
                 // Get a reference to storage
                 let storageRef = Storage.storage().reference()
                 
                 // Specify the path
-                let fileRef = storageRef.child(path)
+                let fileRef = storageRef.child(path.0)
                 
                 // Retrieve the data
                 fileRef.getData(maxSize: 5 * 1024 * 1024) { data, error in
                     
                     // Check for errors
                     if error == nil && data != nil {
-                        
+                        if self.checkDisplay == true {
+                            return
+                        }
                         // Create a UIImage and put it into our array for display
                         if let image = UIImage(data: data!) {
                             // *************
                             if self.cards.count == self.currentTree.count {
                                 // 2. layout the first 4 cards for the user
+                                for card in self.cards {
+                                    print(card.name!)
+                                }
+                                self.checkDisplay = true
                                 self.layoutCards()
                                 
                                 // 3. set up the (non-interactive) emoji options overlay
@@ -154,12 +163,16 @@ class ViewController: UIViewController, DatabaseListener {
                             // 1. create a deck of cards
                             // 20 cards for demonstrational purposes - once the cards run out, just re-run the project to start over
                             // of course, you could always add new cards to self.cards and call layoutCards() again
-                            let card = ImageCard(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 60, height: self.view.frame.height * 0.6), img: image)
+                            let card = ImageCard(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 60, height: self.view.frame.height * 0.6), img: image, name: self.currentTree[path.1].name!, description: self.currentTree[path.1].desc!)
                             self.cards.append(card)
                             
                             if self.cards.count == self.currentTree.count {
                                 self.stopLoading()
                                 // 2. layout the first 4 cards for the user
+                                for card in self.cards {
+                                    print(card.name!)
+                                }
+                                self.checkDisplay = true
                                 self.layoutCards()
                                 
                                 // 3. set up the (non-interactive) emoji options overlay

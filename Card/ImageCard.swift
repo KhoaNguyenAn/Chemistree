@@ -8,10 +8,10 @@
 import UIKit
 
 class ImageCard: CardView {
-
-    init(frame: CGRect, img: UIImage) {
+    var name: String?
+    init(frame: CGRect, img: UIImage, name: String, description: String ) {
         super.init(frame: frame)
-        
+        self.name = name
         // image
         
         let imageView = UIImageView(image: img)
@@ -26,20 +26,31 @@ class ImageCard: CardView {
         
         // dummy text boxes
         
-        let textBox1 = UIView()
-        textBox1.backgroundColor = UIColor(red: 60/255, green: 200/255, blue: 100/255, alpha: 1.0)
+//        let textBox1 = UIView()
+//        textBox1.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
+//        textBox1.layer.cornerRadius = 12
+//        textBox1.layer.masksToBounds = true
+//
+//        textBox1.frame = CGRect(x: 12, y: imageView.frame.maxY + 15, width: 200, height: 24)
+        
+        //
+        let textBox1 = UILabel()
+        textBox1.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
+        textBox1.textColor = UIColor.black
         textBox1.layer.cornerRadius = 12
         textBox1.layer.masksToBounds = true
-
-        textBox1.frame = CGRect(x: 12, y: imageView.frame.maxY + 15, width: 200, height: 24)
+        textBox1.frame = CGRect(x: 12, y: imageView.frame.maxY + 15, width: 120, height: 24)
+        textBox1.text = name
+        //
         self.addSubview(textBox1)
 
-        let textBox2 = UIView()
-        textBox2.backgroundColor = UIColor(red: 60/255, green: 150/255, blue: 100/255, alpha: 1.0)
+        let textBox2 = UILabel()
+        textBox2.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
+        textBox2.textColor = UIColor.black
         textBox2.layer.cornerRadius = 12
         textBox2.layer.masksToBounds = true
-
-        textBox2.frame = CGRect(x: 12, y: textBox1.frame.maxY + 10, width: 120, height: 24)
+        textBox2.frame = CGRect(x: 12, y: textBox1.frame.maxY + 10, width: 200, height: 30)
+        textBox2.text = description
         self.addSubview(textBox2)
         
 

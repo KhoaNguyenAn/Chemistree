@@ -60,6 +60,7 @@ class RegisterScreen: UIViewController, DatabaseListener {
             print("abc")
             
             await MainActor.run {
+                checkNew = true
                 performSegue(withIdentifier: "showTreesSegue", sender: sender)
             }
         }

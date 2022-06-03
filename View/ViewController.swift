@@ -66,6 +66,9 @@ class ViewController: UIViewController, DatabaseListener {
         self.view = UIView()
         self.view.addSubview(takePicButton)
         databaseController?.addListener(listener: self)
+        if checkNew == false {
+            self.viewDidLoad()
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -122,7 +125,15 @@ class ViewController: UIViewController, DatabaseListener {
                         // Create a UIImage and put it into our array for display
                         if let image = UIImage(data: data!) {
                             // *************
-                            
+                            if self.cards.count == self.currentTree.count {
+                                // 2. layout the first 4 cards for the user
+                                self.layoutCards()
+                                
+                                // 3. set up the (non-interactive) emoji options overlay
+                                self.emojiOptionsOverlay = EmojiOptionsOverlay(frame: self.view.frame)
+                                self.view.addSubview(self.emojiOptionsOverlay)
+                                return
+                            }
                             // 1. create a deck of cards
                             // 20 cards for demonstrational purposes - once the cards run out, just re-run the project to start over
                             // of course, you could always add new cards to self.cards and call layoutCards() again

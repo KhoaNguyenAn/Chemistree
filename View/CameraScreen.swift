@@ -11,6 +11,7 @@ import Firebase
 import FirebaseFirestore
 import CoreLocation
 
+var checkNew : Bool = false
 class CameraScreen: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate,
                     DatabaseListener, CLLocationManagerDelegate {
     
@@ -40,6 +41,7 @@ class CameraScreen: UIViewController, UIImagePickerControllerDelegate, UINavigat
     override func viewDidLoad() {
         super.viewDidLoad()
         check = false
+        checkNew = false
         self.view.backgroundColor = UIColor(red: 197/255, green: 214/255, blue: 217/255, alpha: 1.0)
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         databaseController = appDelegate?.databaseController
@@ -171,7 +173,7 @@ class CameraScreen: UIViewController, UIImagePickerControllerDelegate, UINavigat
                 guard let databaseController = self.databaseController else {
                     fatalError("no database controller")
                 }
-                
+                checkNew = true
                 databaseController.addTree(
                     name: self.treeName.text!,
                     desc: self.treeDescription.text!,
@@ -193,12 +195,10 @@ class CameraScreen: UIViewController, UIImagePickerControllerDelegate, UINavigat
     
     override func viewDidAppear(_ animated: Bool) {
         check = false
+        checkNew = false
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         check = false
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//        let managedContext = appDelegate.managedObjectContext
-
     }
 }

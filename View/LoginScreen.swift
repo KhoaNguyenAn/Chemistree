@@ -54,6 +54,7 @@ class LoginScreen: UIViewController, DatabaseListener {
                 return
             }
             await MainActor.run {
+                checkNew = true
                 performSegue(withIdentifier: "showTreesSegue", sender: sender)
             }
         }

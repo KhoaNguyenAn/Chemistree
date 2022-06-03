@@ -18,7 +18,6 @@ class MapScreen: UIViewController, CLLocationManagerDelegate, DatabaseListener {
     func onAllTreesChange(change: DatabaseChange, trees: [Tree]) {
         currentTree = trees
         self.viewDidLoad()
-        self.viewWillAppear(true)
     }
     
     func onAuthChange(change: DatabaseChange) {

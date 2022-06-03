@@ -14,6 +14,7 @@ class ViewController: UIViewController, DatabaseListener {
     var currentTree: [Tree] = []
     var retrievedImages = [UIImage] ()
     
+    @IBOutlet weak var takePicButton: UIButton!
     func onUserChange(change: DatabaseChange, users: [User]) {
         // do nothing
     }
@@ -62,6 +63,8 @@ class ViewController: UIViewController, DatabaseListener {
     override func viewWillAppear(_ animated: Bool) {
         //        cards = [ImageCard]()
         super.viewWillAppear(animated)
+        self.view = UIView()
+        self.view.addSubview(takePicButton)
         databaseController?.addListener(listener: self)
     }
     

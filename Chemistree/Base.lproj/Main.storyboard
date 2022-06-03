@@ -218,6 +218,7 @@
                     <tabBarItem key="tabBarItem" title="Forest" image="leaf.fill" catalog="system" id="fml-lO-qY6"/>
                     <navigationItem key="navigationItem" id="E5a-CL-XC0"/>
                     <connections>
+                        <outlet property="takePicButton" destination="78b-Jt-jiD" id="QyY-BN-hpa"/>
                         <segue destination="mEx-kM-CqF" kind="show" identifier="captureTreeSegue" id="a9Q-Vk-Uzc"/>
                     </connections>
                 </viewController>

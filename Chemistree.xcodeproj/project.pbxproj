@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		4900ECB1282E1F570077994B /* MapScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4900ECB0282E1F570077994B /* MapScreen.swift */; };
 		4900ECBD282E2FDE0077994B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4900ECBC282E2FDD0077994B /* Assets.xcassets */; };
+		49022EEF284A12C400F7BD10 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49022EEE284A12C400F7BD10 /* ProgressView.swift */; };
+		49022EF1284A141900F7BD10 /* ProgressShapeLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49022EF0284A141900F7BD10 /* ProgressShapeLayer.swift */; };
+		49022EF3284A158B00F7BD10 /* StrokeAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49022EF2284A158B00F7BD10 /* StrokeAnimation.swift */; };
+		49022EF5284A165200F7BD10 /* RotationAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49022EF4284A165200F7BD10 /* RotationAnimation.swift */; };
+		49022EF7284A16AB00F7BD10 /* StrokeColorAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49022EF6284A16AB00F7BD10 /* StrokeColorAnimation.swift */; };
 		490B804F282F7FD10020D69E /* CameraScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490B804E282F7FD10020D69E /* CameraScreen.swift */; };
 		4911255D284734FA0086CB47 /* UIViewDisplayMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4911255C284734FA0086CB47 /* UIViewDisplayMessage.swift */; };
 		49225DDC282D22A600993A22 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49225DDB282D22A600993A22 /* CardView.swift */; };
@@ -37,6 +42,11 @@
 /* Begin PBXFileReference section */
 		4900ECB0282E1F570077994B /* MapScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapScreen.swift; sourceTree = "<group>"; };
 		4900ECBC282E2FDD0077994B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		49022EEE284A12C400F7BD10 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
+		49022EF0284A141900F7BD10 /* ProgressShapeLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressShapeLayer.swift; sourceTree = "<group>"; };
+		49022EF2284A158B00F7BD10 /* StrokeAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeAnimation.swift; sourceTree = "<group>"; };
+		49022EF4284A165200F7BD10 /* RotationAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotationAnimation.swift; sourceTree = "<group>"; };
+		49022EF6284A16AB00F7BD10 /* StrokeColorAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeColorAnimation.swift; sourceTree = "<group>"; };
 		490B804E282F7FD10020D69E /* CameraScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraScreen.swift; sourceTree = "<group>"; };
 		4911255C284734FA0086CB47 /* UIViewDisplayMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewDisplayMessage.swift; sourceTree = "<group>"; };
 		49225DDB282D22A600993A22 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
@@ -78,6 +88,11 @@
 		491368EC2849CB67001FADEA /* LoadingAnimation */ = {
 			isa = PBXGroup;
 			children = (
+				49022EEE284A12C400F7BD10 /* ProgressView.swift */,
+				49022EF0284A141900F7BD10 /* ProgressShapeLayer.swift */,
+				49022EF2284A158B00F7BD10 /* StrokeAnimation.swift */,
+				49022EF4284A165200F7BD10 /* RotationAnimation.swift */,
+				49022EF6284A16AB00F7BD10 /* StrokeColorAnimation.swift */,
 			);
 			path = LoadingAnimation;
 			sourceTree = "<group>";
@@ -237,6 +252,7 @@
 				494DBB1E2837755E007200BA /* AllTrees.swift in Sources */,
 				494DBB1428377105007200BA /* DatabaseProtocol.swift in Sources */,
 				494DBB0F28376729007200BA /* RegisterScreen.swift in Sources */,
+				49022EF3284A158B00F7BD10 /* StrokeAnimation.swift in Sources */,
 				4900ECB1282E1F570077994B /* MapScreen.swift in Sources */,
 				4911255D284734FA0086CB47 /* UIViewDisplayMessage.swift in Sources */,
 				494DBB1A28377331007200BA /* User.swift in Sources */,
@@ -247,9 +263,13 @@
 				490B804F282F7FD10020D69E /* CameraScreen.swift in Sources */,
 				49225DDE282D22E600993A22 /* EmojiOptionsOverlay.swift in Sources */,
 				494DBB1628377127007200BA /* MulticastDelegate.swift in Sources */,
+				49022EF5284A165200F7BD10 /* RotationAnimation.swift in Sources */,
 				49225DE4282D245700993A22 /* LoginScreen.swift in Sources */,
 				49225DDC282D22A600993A22 /* CardView.swift in Sources */,
 				493B2DD4282D204700BC4B7E /* SceneDelegate.swift in Sources */,
+				49022EF1284A141900F7BD10 /* ProgressShapeLayer.swift in Sources */,
+				49022EF7284A16AB00F7BD10 /* StrokeColorAnimation.swift in Sources */,
+				49022EEF284A12C400F7BD10 /* ProgressView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

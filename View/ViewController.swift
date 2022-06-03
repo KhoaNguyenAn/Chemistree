@@ -36,6 +36,7 @@ class ViewController: UIViewController, DatabaseListener {
                     count += 1
                 }
                 if count == trees.count {
+                    self.startLoading()
                     self.currentTree = trees
                     let appDelegate = UIApplication.shared.delegate as? AppDelegate
                     self.databaseController = appDelegate?.databaseController
@@ -85,6 +86,7 @@ class ViewController: UIViewController, DatabaseListener {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        startLoading()
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         databaseController = appDelegate?.databaseController
         
@@ -98,6 +100,21 @@ class ViewController: UIViewController, DatabaseListener {
             
             retrievedData()
         }
+    }
+    
+    func startLoading() {
+        self.setupUI()
+        
+        loadingIndicator.isAnimating = true
+        
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+//            self.loadingIndicator.isAnimating = false
+//            self.helloLabel.isHidden = false
+//        }
+    }
+    
+    func stopLoading() {
+        loadingIndicator.isAnimating = false
     }
     
     func retrievedData() {
@@ -141,6 +158,7 @@ class ViewController: UIViewController, DatabaseListener {
                             self.cards.append(card)
                             
                             if self.cards.count == self.currentTree.count {
+                                self.stopLoading()
                                 // 2. layout the first 4 cards for the user
                                 self.layoutCards()
                                 
@@ -435,6 +453,35 @@ class ViewController: UIViewController, DatabaseListener {
             })
         }
     }
+    
+    // MARK: - UI Setup
+        private func setupUI() {
+
+            self.view.backgroundColor = .white
+            
+            self.view.addSubview(loadingIndicator)
+
+
+
+            NSLayoutConstraint.activate([
+                loadingIndicator.centerXAnchor
+                    .constraint(equalTo: self.view.centerXAnchor),
+                loadingIndicator.centerYAnchor
+                    .constraint(equalTo: self.view.centerYAnchor),
+                loadingIndicator.widthAnchor
+                    .constraint(equalToConstant: 50),
+                loadingIndicator.heightAnchor
+                    .constraint(equalTo: self.loadingIndicator.widthAnchor)
+            ])
+        }
+        
+        
+        // MARK: - Properties
+        let loadingIndicator: ProgressView = {
+            let progress = ProgressView(colors: [.red, .systemGreen, .systemBlue], lineWidth: 5)
+            progress.translatesAutoresizingMaskIntoConstraints = false
+            return progress
+        }()
 }
 
 // MARK: - Unrelated to cards logic code

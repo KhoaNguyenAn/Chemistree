@@ -8,6 +8,8 @@
 import UIKit
 import FirebaseStorage
 import Firebase
+
+var currentUserEmail : String?
 class ViewController: UIViewController, DatabaseListener {
     var listenerType: ListenerType = .all
     weak var databaseController: DatabaseProtocol?
@@ -149,9 +151,7 @@ class ViewController: UIViewController, DatabaseListener {
                             // *************
                             if self.cards.count == self.currentTree.count {
                                 // 2. layout the first 4 cards for the user
-                                for card in self.cards {
-                                    print(card.name!)
-                                }
+
                                 self.checkDisplay = true
                                 self.layoutCards()
                                 
@@ -163,15 +163,21 @@ class ViewController: UIViewController, DatabaseListener {
                             // 1. create a deck of cards
                             // 20 cards for demonstrational purposes - once the cards run out, just re-run the project to start over
                             // of course, you could always add new cards to self.cards and call layoutCards() again
-                            let card = ImageCard(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 60, height: self.view.frame.height * 0.6), img: image, name: self.currentTree[path.1].name!, description: self.currentTree[path.1].desc!)
+                            let card = ImageCard(
+                                frame: CGRect(x: 0, y: 0,
+                                              width: self.view.frame.width - 60,
+                                              height: self.view.frame.height * 0.6),
+                                img: image, name: self.currentTree[path.1].name!,
+                                description: self.currentTree[path.1].desc!,
+                                lat: self.currentTree[path.1].lat!,
+                                log: self.currentTree[path.1].log!)
+                            
                             self.cards.append(card)
                             
                             if self.cards.count == self.currentTree.count {
                                 self.stopLoading()
                                 // 2. layout the first 4 cards for the user
-                                for card in self.cards {
-                                    print(card.name!)
-                                }
+
                                 self.checkDisplay = true
                                 self.layoutCards()
                                 
@@ -334,6 +340,13 @@ class ViewController: UIViewController, DatabaseListener {
         case .changed:
             cardAttachmentBehavior.anchorPoint = panLocationInView
             if cards[0].center.x > (self.view.center.x + requiredOffsetFromCenter) {
+                // TODO: update Data to Current User
+                let db = Firestore.firestore()
+                db.collection("user").document(currentUserEmail!).updateData([
+                    "tree_latitude": FieldValue.arrayUnion([cards[0].lat!]),
+                    "tree_longitude": FieldValue.arrayUnion([cards[0].log!])
+                ])
+                //
                 if cards[0].center.y < (self.view.center.y - optionLength) {
                     cards[0].showOptionLabel(option: .like1)
                     emojiOptionsOverlay.showEmoji(for: .like1)

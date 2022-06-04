@@ -56,10 +56,9 @@ class RegisterScreen: UIViewController, DatabaseListener {
             let out = await databaseController.signIn(email: email ?? "", password: password ?? "", name: name ?? "")
             if out == false {
                 displayMessage(title: "Register fail", message: "")
-            }
-            print("abc")
-            
+            }            
             await MainActor.run {
+                currentUserEmail = email
                 checkNew = true
                 performSegue(withIdentifier: "showTreesSegue", sender: sender)
             }

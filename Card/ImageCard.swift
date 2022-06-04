@@ -9,9 +9,15 @@ import UIKit
 
 class ImageCard: CardView {
     var name: String?
-    init(frame: CGRect, img: UIImage, name: String, description: String ) {
+    var des: String?
+    var lat: Double?
+    var log: Double?
+    init(frame: CGRect, img: UIImage, name: String, description: String, lat: Double, log: Double ) {
         super.init(frame: frame)
         self.name = name
+        self.des = description
+        self.lat = lat
+        self.log = log
         // image
         
         let imageView = UIImageView(image: img)

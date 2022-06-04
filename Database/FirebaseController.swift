@@ -155,11 +155,13 @@ class FirebaseController: NSObject, DatabaseProtocol {
             //let authDataResult = try await authController.signInAnonymously()
             let authDataResult = try await authController.createUser(withEmail: email, password: password)
             currentUser = authDataResult.user // contain userID
-            print(currentUser)
+//            print(currentUser)
 //            FirebaseController.DEFAULT_TEAM_NAME = currentUser?.email ?? "Default Team"
             database.collection("user").document(email).setData([
                 "name": name,
-                "email": email
+                "email": email,
+                "tree_latitude": [],
+                "tree_longitude": []
             ]) { err in
                 if let err = err {
                     print("Error writing document: \(err)")
@@ -184,7 +186,6 @@ class FirebaseController: NSObject, DatabaseProtocol {
     }
     
     func logIn(email: String, password: String) async -> Bool {
-        print("abc")
         do {
             //let authDataResult = try await authController.signInAnonymously()
             let authDataResult = try await authController.signIn(withEmail: email, password: password)

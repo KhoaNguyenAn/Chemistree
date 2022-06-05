@@ -26,7 +26,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.title = "Melbourne City"
         ui_map.showsUserLocation = true
         ui_map.delegate = self
 
@@ -46,6 +46,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
 
     @IBAction func unwindToMap(segue:UIStoryboardSegue) {
+        self.title = titlePicked
         initMapRegion(coord: returnedPlacemark!.coordinate)
         addPoiToMap(coord: returnedPlacemark!.coordinate, poiTittle: returnedPlacemark!.title!)
         setupMenu()
@@ -69,7 +70,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             }
             childrenArray.append(new)
         }
-        let menu = UIMenu(title: "Historique", children: childrenArray)
+        let menu = UIMenu(title: "History", children: childrenArray)
         button2.menu = menu
         button2.showsMenuAsPrimaryAction = true
     }
@@ -80,6 +81,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 
     func addPoiToMap(coord: CLLocationCoordinate2D, poiTittle: String) {
         let poi = MKPointAnnotation()
+        print(poiTittle)
         poi.coordinate = coord
         poi.title = poiTittle
         ui_map.addAnnotation(poi)

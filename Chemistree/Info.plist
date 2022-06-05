@@ -10,6 +10,8 @@ simulator</string>
 application</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>This application uses this information to display locations on a map</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>This application uses this information to display locations on a map</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

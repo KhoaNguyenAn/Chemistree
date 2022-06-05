@@ -8,6 +8,8 @@
 import UIKit
 import MapKit
 
+var titlePicked: String?
+
 class SearchViewController: UIViewController {
 
     var searchCompleter = MKLocalSearchCompleter()
@@ -21,6 +23,7 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         searchCompleter.delegate = self
         validButton.isHidden = true
+        validButton.layer.cornerRadius = 15
     }
 
     @IBAction func AddAdressButton(_ sender: Any) {
@@ -82,7 +85,7 @@ extension SearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
         let completion = searchResults[indexPath.row]
-
+        titlePicked = completion.title
         let searchRequest = MKLocalSearch.Request(completion: completion)
         let search = MKLocalSearch(request: searchRequest)
         search.start { (response, error) in

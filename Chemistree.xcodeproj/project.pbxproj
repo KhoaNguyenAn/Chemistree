@@ -25,6 +25,7 @@
 		493B2DD6282D204700BC4B7E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493B2DD5282D204700BC4B7E /* ViewController.swift */; };
 		493B2DD9282D204700BC4B7E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 493B2DD7282D204700BC4B7E /* Main.storyboard */; };
 		493B2DDE282D204800BC4B7E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 493B2DDC282D204800BC4B7E /* LaunchScreen.storyboard */; };
+		49442D9E284B2C13008CBEED /* MapTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49442D9D284B2C13008CBEED /* MapTest.swift */; };
 		494DBB0F28376729007200BA /* RegisterScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494DBB0E28376729007200BA /* RegisterScreen.swift */; };
 		494DBB1428377105007200BA /* DatabaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494DBB1328377105007200BA /* DatabaseProtocol.swift */; };
 		494DBB1628377127007200BA /* MulticastDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494DBB1528377127007200BA /* MulticastDelegate.swift */; };
@@ -32,6 +33,8 @@
 		494DBB1A28377331007200BA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494DBB1928377331007200BA /* User.swift */; };
 		494DBB1C28377451007200BA /* Tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494DBB1B28377451007200BA /* Tree.swift */; };
 		494DBB1E2837755E007200BA /* AllTrees.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494DBB1D2837755E007200BA /* AllTrees.swift */; };
+		49613339284C89CC000A94DD /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49613338284C89CC000A94DD /* MapViewController.swift */; };
+		4961333B284C89F3000A94DD /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961333A284C89F3000A94DD /* SearchViewController.swift */; };
 		497D19F028421A7C00AEF0D9 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 497D19EF28421A7C00AEF0D9 /* FirebaseAuth */; };
 		497D19F228421A7C00AEF0D9 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 497D19F128421A7C00AEF0D9 /* FirebaseFirestore */; };
 		497D19F428421A7C00AEF0D9 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 497D19F328421A7C00AEF0D9 /* FirebaseFirestoreSwift-Beta */; };
@@ -60,6 +63,7 @@
 		493B2DD8282D204700BC4B7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		493B2DDD282D204800BC4B7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		493B2DDF282D204800BC4B7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		49442D9D284B2C13008CBEED /* MapTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTest.swift; sourceTree = "<group>"; };
 		494DBB0E28376729007200BA /* RegisterScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterScreen.swift; sourceTree = "<group>"; };
 		494DBB1328377105007200BA /* DatabaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseProtocol.swift; sourceTree = "<group>"; };
 		494DBB1528377127007200BA /* MulticastDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MulticastDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +71,8 @@
 		494DBB1928377331007200BA /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		494DBB1B28377451007200BA /* Tree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tree.swift; sourceTree = "<group>"; };
 		494DBB1D2837755E007200BA /* AllTrees.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTrees.swift; sourceTree = "<group>"; };
+		49613338284C89CC000A94DD /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		4961333A284C89F3000A94DD /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		4987CF072840C74F008AE5E0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -105,6 +111,7 @@
 				490B804E282F7FD10020D69E /* CameraScreen.swift */,
 				4900ECB0282E1F570077994B /* MapScreen.swift */,
 				493B2DD5282D204700BC4B7E /* ViewController.swift */,
+				49442D9D284B2C13008CBEED /* MapTest.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -126,6 +133,7 @@
 				491368EE2849CBD4001FADEA /* Card */,
 				491368ED2849CB79001FADEA /* View */,
 				491368EC2849CB67001FADEA /* LoadingAnimation */,
+				49613337284C8994000A94DD /* SearchPlace */,
 				493B2DD0282D204700BC4B7E /* Chemistree */,
 				493B2DCF282D204700BC4B7E /* Products */,
 			);
@@ -165,6 +173,15 @@
 				4987CF072840C74F008AE5E0 /* GoogleService-Info.plist */,
 			);
 			path = Database;
+			sourceTree = "<group>";
+		};
+		49613337284C8994000A94DD /* SearchPlace */ = {
+			isa = PBXGroup;
+			children = (
+				49613338284C89CC000A94DD /* MapViewController.swift */,
+				4961333A284C89F3000A94DD /* SearchViewController.swift */,
+			);
+			path = SearchPlace;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -255,6 +272,7 @@
 				49022EF3284A158B00F7BD10 /* StrokeAnimation.swift in Sources */,
 				4900ECB1282E1F570077994B /* MapScreen.swift in Sources */,
 				4911255D284734FA0086CB47 /* UIViewDisplayMessage.swift in Sources */,
+				49613339284C89CC000A94DD /* MapViewController.swift in Sources */,
 				494DBB1A28377331007200BA /* User.swift in Sources */,
 				493B2DD6282D204700BC4B7E /* ViewController.swift in Sources */,
 				494DBB1C28377451007200BA /* Tree.swift in Sources */,
@@ -262,10 +280,12 @@
 				493B2DD2282D204700BC4B7E /* AppDelegate.swift in Sources */,
 				490B804F282F7FD10020D69E /* CameraScreen.swift in Sources */,
 				49225DDE282D22E600993A22 /* EmojiOptionsOverlay.swift in Sources */,
+				4961333B284C89F3000A94DD /* SearchViewController.swift in Sources */,
 				494DBB1628377127007200BA /* MulticastDelegate.swift in Sources */,
 				49022EF5284A165200F7BD10 /* RotationAnimation.swift in Sources */,
 				49225DE4282D245700993A22 /* LoginScreen.swift in Sources */,
 				49225DDC282D22A600993A22 /* CardView.swift in Sources */,
+				49442D9E284B2C13008CBEED /* MapTest.swift in Sources */,
 				493B2DD4282D204700BC4B7E /* SceneDelegate.swift in Sources */,
 				49022EF1284A141900F7BD10 /* ProgressShapeLayer.swift in Sources */,
 				49022EF7284A16AB00F7BD10 /* StrokeColorAnimation.swift in Sources */,

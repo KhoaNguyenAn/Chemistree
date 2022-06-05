@@ -27,6 +27,9 @@ class CameraScreen: UIViewController, UIImagePickerControllerDelegate, UINavigat
         // do nothing
     }
     
+    @IBAction func chooseLocation(_ sender: Any) {
+        performSegue(withIdentifier: "chooseLocationSegue", sender: sender)
+    }
     var listenerType: ListenerType = .auth
     weak var databaseController: DatabaseProtocol?
     var locationManager = CLLocationManager()

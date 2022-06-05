@@ -3,8 +3,10 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="UIMenu" message="Requires Xcode 11 or later." minToolsVersion="11.0" requiredIntegratedClassName="UICommandDiff"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -238,15 +240,6 @@
                                 <rect key="frame" x="36" y="88" width="327" height="427"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Isp-v5-obl">
-                                <rect key="frame" x="100" y="766" width="215" height="49"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="tinted" image="square.and.arrow.up.on.square.fill" catalog="system" title="Upload your tree"/>
-                                <connections>
-                                    <action selector="uploadYourTree:" destination="mEx-kM-CqF" eventType="touchUpInside" id="Jem-El-o6k"/>
-                                </connections>
-                            </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Tree name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CH4-PZ-FkL">
                                 <rect key="frame" x="36" y="552" width="327" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -266,6 +259,24 @@
                                 <buttonConfiguration key="configuration" style="filled" image="mappin.circle.fill" catalog="system" title="  Take current location"/>
                                 <connections>
                                     <action selector="takeLocation:" destination="mEx-kM-CqF" eventType="touchUpInside" id="URi-47-gL0"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U9T-Uk-Qv8">
+                                <rect key="frame" x="56" y="723" width="297" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Choose location manually"/>
+                                <connections>
+                                    <action selector="chooseLocation:" destination="mEx-kM-CqF" eventType="touchUpInside" id="3GQ-yA-aSj"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Isp-v5-obl">
+                                <rect key="frame" x="100" y="782" width="215" height="49"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" image="square.and.arrow.up.on.square.fill" catalog="system" title="Upload your tree"/>
+                                <connections>
+                                    <action selector="uploadYourTree:" destination="mEx-kM-CqF" eventType="touchUpInside" id="Jem-El-o6k"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -290,6 +301,7 @@
                         <outlet property="imageView" destination="nQK-B8-pyB" id="aeG-QB-BJm"/>
                         <outlet property="treeDescription" destination="SWC-Tv-23Z" id="K93-WZ-Vh2"/>
                         <outlet property="treeName" destination="CH4-PZ-FkL" id="Hxs-0y-I7L"/>
+                        <segue destination="TTJ-UA-xg6" kind="show" identifier="chooseLocationSegue" id="HnG-jQ-pXu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuH-qO-2UX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -307,6 +319,17 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="vpK-8l-OuJ">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QVk-vy-YMx">
+                                <rect key="frame" x="290" y="718" width="43" height="43"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" image="location.north.circle.fill" catalog="system" imagePlacement="top" title="Go">
+                                    <color key="baseBackgroundColor" systemColor="systemRedColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="goToTree:" destination="ArC-b7-ScR" eventType="touchUpInside" id="T2q-Nt-hkN"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="cHK-ot-Pua"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -319,12 +342,40 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" image="globe.asia.australia.fill" catalog="system" id="kd4-6c-nSH"/>
                     <connections>
+                        <outlet property="goButton" destination="QVk-vy-YMx" id="Ql0-85-CGw"/>
                         <outlet property="mapView" destination="vpK-8l-OuJ" id="U8d-HR-2hP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MPM-YV-97p" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1683" y="1503"/>
+        </scene>
+        <!--Map Screen-->
+        <scene sceneID="pqy-l2-FBM">
+            <objects>
+                <viewController id="MRe-27-F1t" customClass="MapScreen" customModule="Chemistree" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Q5u-r4-8ta">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NOr-xe-o0c">
+                                <rect key="frame" x="0.0" y="44" width="414" height="810"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <connections>
+                                    <segue destination="F9w-dy-C8X" kind="embed" id="aTc-bi-nfv"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="zVV-kq-0Vp"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <connections>
+                        <outlet property="theContainer" destination="NOr-xe-o0c" id="GFm-Pd-q3x"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SbF-ME-Ecn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2494" y="1456"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="M86-ey-9pv">
@@ -363,6 +414,173 @@
             </objects>
             <point key="canvasLocation" x="-871.01449275362324" y="89.732142857142847"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="v0e-z2-hlu">
+            <objects>
+                <viewController id="F9w-dy-C8X" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="O8V-8F-G9e">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="810"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Meh-La-6oL"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ypk-IC-rNh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3312" y="1457"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="VES-hR-Y8F">
+            <objects>
+                <viewController id="TTJ-UA-xg6" customClass="MapViewController" customModule="AdressMapUIKIT" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OWk-iL-V3t">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="4gD-fz-3Aj">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </mapView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="gP6-gf-azH">
+                                <rect key="frame" x="10" y="822" width="394" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="jh8-l8-jPQ"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Standard"/>
+                                    <segment title="Satellite"/>
+                                    <segment title="Hybride"/>
+                                </segments>
+                                <connections>
+                                    <action selector="ChangeMapTypeButton:" destination="TTJ-UA-xg6" eventType="valueChanged" id="G8o-X5-Ven"/>
+                                </connections>
+                            </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ukd-aH-anO">
+                                <rect key="frame" x="30" y="782" width="354" height="30"/>
+                                <color key="backgroundColor" red="0.66422420739999999" green="0.66424006219999998" blue="0.66423153879999997" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" systemColor="labelColor"/>
+                                <menu key="menu" id="ukC-eS-w0l">
+                                    <children>
+                                        <command title="Item 1" id="6Og-GX-BUe"/>
+                                        <command title="Item 2" id="F6z-9d-0MF"/>
+                                    </children>
+                                </menu>
+                                <state key="normal" title="History"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleAspectFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SiD-gC-1iv" userLabel="searchButton">
+                                <rect key="frame" x="157" y="88" width="100" height="40"/>
+                                <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="H6J-4M-6cA"/>
+                                    <constraint firstAttribute="width" constant="100" id="S7e-4y-AUf"/>
+                                </constraints>
+                                <color key="tintColor" systemColor="linkColor"/>
+                                <buttonConfiguration key="configuration" style="tinted" imagePlacement="top" title="" subtitle="Search" imagePadding="0.0" cornerStyle="large" titleAlignment="center">
+                                    <imageReference key="image" image="magnifyingglass.circle.fill" catalog="system" symbolScale="default"/>
+                                    <fontDescription key="subtitleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                                    <color key="baseBackgroundColor" red="0.66422420739999999" green="0.66424006219999998" blue="0.66423153879999997" alpha="0.71386072020000002" colorSpace="custom" customColorSpace="sRGB"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <segue destination="qVP-DP-Ugu" kind="showDetail" identifier="mapToSearchVC" id="x35-EV-GQp"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ElI-Ul-1xC"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="4gD-fz-3Aj" firstAttribute="top" secondItem="OWk-iL-V3t" secondAttribute="top" id="Aby-Np-rE6"/>
+                            <constraint firstItem="ukd-aH-anO" firstAttribute="leading" secondItem="ElI-Ul-1xC" secondAttribute="leading" constant="30" id="BUg-hW-WVH"/>
+                            <constraint firstItem="ElI-Ul-1xC" firstAttribute="trailing" secondItem="SiD-gC-1iv" secondAttribute="trailing" constant="25" id="Bf7-2y-Xtv"/>
+                            <constraint firstItem="ElI-Ul-1xC" firstAttribute="bottom" secondItem="gP6-gf-azH" secondAttribute="bottom" constant="10" id="HBb-Lf-0Gy"/>
+                            <constraint firstItem="gP6-gf-azH" firstAttribute="leading" secondItem="ElI-Ul-1xC" secondAttribute="leading" constant="10" id="Ofn-4Y-qpT"/>
+                            <constraint firstItem="4gD-fz-3Aj" firstAttribute="leading" secondItem="ElI-Ul-1xC" secondAttribute="leading" id="VGC-ls-Yrd"/>
+                            <constraint firstItem="ElI-Ul-1xC" firstAttribute="trailing" secondItem="4gD-fz-3Aj" secondAttribute="trailing" id="gmr-kP-XF6"/>
+                            <constraint firstItem="ElI-Ul-1xC" firstAttribute="trailing" secondItem="gP6-gf-azH" secondAttribute="trailing" constant="10" id="iCo-J4-7Rn"/>
+                            <constraint firstItem="gP6-gf-azH" firstAttribute="top" secondItem="ukd-aH-anO" secondAttribute="bottom" constant="10" id="jEb-TO-Sk4"/>
+                            <constraint firstItem="SiD-gC-1iv" firstAttribute="top" secondItem="ElI-Ul-1xC" secondAttribute="top" constant="25" id="tCw-vB-4ho"/>
+                            <constraint firstItem="ukd-aH-anO" firstAttribute="height" secondItem="gP6-gf-azH" secondAttribute="height" id="tae-NM-b4M"/>
+                            <constraint firstItem="ElI-Ul-1xC" firstAttribute="trailing" secondItem="ukd-aH-anO" secondAttribute="trailing" constant="30" id="ytw-T9-8tR"/>
+                            <constraint firstAttribute="bottom" secondItem="4gD-fz-3Aj" secondAttribute="bottom" id="zLa-N5-t3b"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="4ya-eC-8hF"/>
+                    <connections>
+                        <outlet property="button2" destination="ukd-aH-anO" id="hy0-gT-3zW"/>
+                        <outlet property="mapTypeSegmet" destination="gP6-gf-azH" id="kQQ-vP-ilm"/>
+                        <outlet property="ui_map" destination="4gD-fz-3Aj" id="ISS-df-qay"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SLf-2X-orG" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3499" y="686"/>
+        </scene>
+        <!--Search View Controller-->
+        <scene sceneID="cAP-3l-hpc">
+            <objects>
+                <viewController id="qVP-DP-Ugu" customClass="SearchViewController" customModule="AdressMapUIKIT" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YJ5-th-VYF">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A3B-Gv-qhv">
+                                <rect key="frame" x="25" y="0.0" width="364" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="FJF-Cr-XiO"/>
+                                </constraints>
+                                <color key="tintColor" systemColor="systemRedColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Select this address">
+                                    <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="18"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="AddAdressButton:" destination="qVP-DP-Ugu" eventType="touchUpInside" id="RFt-JG-WQl"/>
+                                    <segue destination="0Po-JB-QSc" kind="unwind" identifier="searchVCToMapVC" unwindAction="unwindToMapWithSegue:" id="yEs-pW-EJS"/>
+                                </connections>
+                            </button>
+                            <searchBar contentMode="scaleToFill" placeholder="Ex : 3 rue de vesoul, Besançon" translatesAutoresizingMaskIntoConstraints="NO" id="5JY-0B-ly1">
+                                <rect key="frame" x="35" y="35" width="344" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="nCC-5s-5MW"/>
+                                </constraints>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <textInputTraits key="textInputTraits" textContentType="street-address"/>
+                                <connections>
+                                    <outlet property="delegate" destination="qVP-DP-Ugu" id="h5h-qW-OLq"/>
+                                </connections>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="eBW-ly-O1P">
+                                <rect key="frame" x="35" y="84" width="344" height="689"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="qVP-DP-Ugu" id="NFs-xG-bs3"/>
+                                    <outlet property="delegate" destination="qVP-DP-Ugu" id="56a-AP-XJs"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="dND-dS-Kgg"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="dND-dS-Kgg" firstAttribute="trailing" secondItem="eBW-ly-O1P" secondAttribute="trailing" constant="35" id="3ps-zz-iRh"/>
+                            <constraint firstItem="5JY-0B-ly1" firstAttribute="top" secondItem="A3B-Gv-qhv" secondAttribute="bottom" constant="5" id="4Br-bp-JJ1"/>
+                            <constraint firstItem="dND-dS-Kgg" firstAttribute="bottom" secondItem="eBW-ly-O1P" secondAttribute="bottom" constant="35" id="4Vm-DO-gQc"/>
+                            <constraint firstItem="eBW-ly-O1P" firstAttribute="leading" secondItem="dND-dS-Kgg" secondAttribute="leading" constant="35" id="9T6-pJ-seT"/>
+                            <constraint firstItem="eBW-ly-O1P" firstAttribute="trailing" secondItem="5JY-0B-ly1" secondAttribute="trailing" id="Awg-uy-9ER"/>
+                            <constraint firstItem="eBW-ly-O1P" firstAttribute="top" secondItem="5JY-0B-ly1" secondAttribute="bottom" constant="5" id="GGm-3q-PyH"/>
+                            <constraint firstItem="dND-dS-Kgg" firstAttribute="trailing" secondItem="A3B-Gv-qhv" secondAttribute="trailing" constant="25" id="VXj-lH-RGc"/>
+                            <constraint firstItem="eBW-ly-O1P" firstAttribute="leading" secondItem="5JY-0B-ly1" secondAttribute="leading" id="YHf-Js-JBb"/>
+                            <constraint firstItem="A3B-Gv-qhv" firstAttribute="top" secondItem="dND-dS-Kgg" secondAttribute="top" id="jtD-R2-H7n"/>
+                            <constraint firstItem="A3B-Gv-qhv" firstAttribute="leading" secondItem="dND-dS-Kgg" secondAttribute="leading" constant="25" id="wNh-OU-6cL"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="searchResultsTableView" destination="eBW-ly-O1P" id="E0d-yw-7Df"/>
+                        <outlet property="validButton" destination="A3B-Gv-qhv" id="7cJ-Gr-KOI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qoy-VG-8cj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="0Po-JB-QSc" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="4507" y="686"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="Nnt-WY-aoG"/>
@@ -373,12 +591,26 @@
         <image name="camera.fill" catalog="system" width="128" height="94"/>
         <image name="globe.asia.australia.fill" catalog="system" width="128" height="121"/>
         <image name="leaf.fill" catalog="system" width="128" height="106"/>
+        <image name="location.north.circle.fill" catalog="system" width="128" height="121"/>
         <image name="logo" width="422.5" height="422.5"/>
+        <image name="magnifyingglass.circle.fill" catalog="system" width="128" height="121"/>
         <image name="mappin.circle.fill" catalog="system" width="128" height="121"/>
         <image name="sparkle" catalog="system" width="128" height="121"/>
         <image name="square.and.arrow.up.on.square.fill" catalog="system" width="117" height="128"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGroupedBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

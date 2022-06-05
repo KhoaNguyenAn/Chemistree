@@ -74,6 +74,15 @@
         }
       },
       {
+        "package": "Layoutless",
+        "repositoryURL": "https://github.com/DeclarativeHub/Layoutless.git",
+        "state": {
+          "branch": null,
+          "revision": "50ae5ab4cb9bf676c1901f4ba0f267f27e68d0a7",
+          "version": "0.4.3"
+        }
+      },
+      {
         "package": "leveldb",
         "repositoryURL": "https://github.com/firebase/leveldb.git",
         "state": {

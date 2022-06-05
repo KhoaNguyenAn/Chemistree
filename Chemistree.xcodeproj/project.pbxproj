@@ -20,6 +20,8 @@
 		49225DDE282D22E600993A22 /* EmojiOptionsOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49225DDD282D22E600993A22 /* EmojiOptionsOverlay.swift */; };
 		49225DE0282D232500993A22 /* ImageCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49225DDF282D232500993A22 /* ImageCard.swift */; };
 		49225DE4282D245700993A22 /* LoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49225DE3282D245700993A22 /* LoginScreen.swift */; };
+		49252FB1284D26B1003BF6FF /* Layoutless in Frameworks */ = {isa = PBXBuildFile; productRef = 49252FB0284D26B1003BF6FF /* Layoutless */; };
+		49252FB3284D274E003BF6FF /* ShowDirectionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49252FB2284D274E003BF6FF /* ShowDirectionScreen.swift */; };
 		493B2DD2282D204700BC4B7E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493B2DD1282D204700BC4B7E /* AppDelegate.swift */; };
 		493B2DD4282D204700BC4B7E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493B2DD3282D204700BC4B7E /* SceneDelegate.swift */; };
 		493B2DD6282D204700BC4B7E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493B2DD5282D204700BC4B7E /* ViewController.swift */; };
@@ -56,6 +58,7 @@
 		49225DDD282D22E600993A22 /* EmojiOptionsOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiOptionsOverlay.swift; sourceTree = "<group>"; };
 		49225DDF282D232500993A22 /* ImageCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCard.swift; sourceTree = "<group>"; };
 		49225DE3282D245700993A22 /* LoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreen.swift; sourceTree = "<group>"; };
+		49252FB2284D274E003BF6FF /* ShowDirectionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDirectionScreen.swift; sourceTree = "<group>"; };
 		493B2DCE282D204700BC4B7E /* Chemistree.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chemistree.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		493B2DD1282D204700BC4B7E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		493B2DD3282D204700BC4B7E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -85,6 +88,7 @@
 				497D19F628421A7C00AEF0D9 /* FirebaseStorage in Frameworks */,
 				497D19F028421A7C00AEF0D9 /* FirebaseAuth in Frameworks */,
 				497D19F228421A7C00AEF0D9 /* FirebaseFirestore in Frameworks */,
+				49252FB1284D26B1003BF6FF /* Layoutless in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,6 +114,7 @@
 				494DBB0E28376729007200BA /* RegisterScreen.swift */,
 				490B804E282F7FD10020D69E /* CameraScreen.swift */,
 				4900ECB0282E1F570077994B /* MapScreen.swift */,
+				49252FB2284D274E003BF6FF /* ShowDirectionScreen.swift */,
 				493B2DD5282D204700BC4B7E /* ViewController.swift */,
 				49442D9D284B2C13008CBEED /* MapTest.swift */,
 			);
@@ -205,6 +210,7 @@
 				497D19F128421A7C00AEF0D9 /* FirebaseFirestore */,
 				497D19F328421A7C00AEF0D9 /* FirebaseFirestoreSwift-Beta */,
 				497D19F528421A7C00AEF0D9 /* FirebaseStorage */,
+				49252FB0284D26B1003BF6FF /* Layoutless */,
 			);
 			productName = Chemistree;
 			productReference = 493B2DCE282D204700BC4B7E /* Chemistree.app */;
@@ -236,6 +242,7 @@
 			mainGroup = 493B2DC5282D204700BC4B7E;
 			packageReferences = (
 				497D19EE28421A7C00AEF0D9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				49252FAF284D26B1003BF6FF /* XCRemoteSwiftPackageReference "Layoutless" */,
 			);
 			productRefGroup = 493B2DCF282D204700BC4B7E /* Products */;
 			projectDirPath = "";
@@ -289,6 +296,7 @@
 				493B2DD4282D204700BC4B7E /* SceneDelegate.swift in Sources */,
 				49022EF1284A141900F7BD10 /* ProgressShapeLayer.swift in Sources */,
 				49022EF7284A16AB00F7BD10 /* StrokeColorAnimation.swift in Sources */,
+				49252FB3284D274E003BF6FF /* ShowDirectionScreen.swift in Sources */,
 				49022EEF284A12C400F7BD10 /* ProgressView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -511,6 +519,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		49252FAF284D26B1003BF6FF /* XCRemoteSwiftPackageReference "Layoutless" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/DeclarativeHub/Layoutless.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.4.3;
+			};
+		};
 		497D19EE28421A7C00AEF0D9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -522,6 +538,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		49252FB0284D26B1003BF6FF /* Layoutless */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 49252FAF284D26B1003BF6FF /* XCRemoteSwiftPackageReference "Layoutless" */;
+			productName = Layoutless;
+		};
 		497D19EF28421A7C00AEF0D9 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 497D19EE28421A7C00AEF0D9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

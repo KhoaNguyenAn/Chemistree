@@ -328,6 +328,7 @@
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="getDirection:" destination="ArC-b7-ScR" eventType="touchUpInside" id="Wto-AR-muE"/>
+                                    <action selector="goToDirection:" destination="ArC-b7-ScR" eventType="touchUpInside" id="25e-5p-Zog"/>
                                     <action selector="goToTree:" destination="ArC-b7-ScR" eventType="touchUpInside" id="T2q-Nt-hkN"/>
                                 </connections>
                             </button>
@@ -345,11 +346,28 @@
                     <connections>
                         <outlet property="goButton" destination="QVk-vy-YMx" id="Ql0-85-CGw"/>
                         <outlet property="mapView" destination="vpK-8l-OuJ" id="U8d-HR-2hP"/>
+                        <segue destination="xj4-dF-FdU" kind="show" identifier="showDirectionSegue" id="N3l-Ge-x2Y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MPM-YV-97p" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1683" y="1503"/>
+        </scene>
+        <!--Show Direction Screen-->
+        <scene sceneID="Wj1-6D-0FG">
+            <objects>
+                <viewController id="xj4-dF-FdU" customClass="ShowDirectionScreen" customModule="Chemistree" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="228-GC-CE2">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Poq-is-6KD"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="48f-U4-FyU"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rTe-f1-hLM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2606" y="1503"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="M86-ey-9pv">

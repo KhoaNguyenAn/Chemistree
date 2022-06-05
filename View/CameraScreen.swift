@@ -30,11 +30,14 @@ class CameraScreen: UIViewController, UIImagePickerControllerDelegate, UINavigat
     @IBAction func chooseLocation(_ sender: Any) {
         performSegue(withIdentifier: "chooseLocationSegue", sender: sender)
     }
+    
+    
     var listenerType: ListenerType = .auth
     weak var databaseController: DatabaseProtocol?
     var locationManager = CLLocationManager()
     var longitude : Double?
     var latitude : Double?
+    var returnedCoord: CLLocationCoordinate2D?
     
     @IBOutlet weak var treeName: UITextField!
     
@@ -77,8 +80,6 @@ class CameraScreen: UIViewController, UIImagePickerControllerDelegate, UINavigat
     
     @IBAction func uploadYourTree(_ sender: Any) {
         uploadImageToFirebase()
-        navigationController?.popViewController(animated: false)
-        return
     }
     
     /*
@@ -141,8 +142,7 @@ class CameraScreen: UIViewController, UIImagePickerControllerDelegate, UINavigat
             displayMessage(title: "Missing tree name", message: "Please upload tree name")
             return
         }
-        
-        if check == false {
+        guard coordReturned != nil || check == true else {
             displayMessage(title: "Missing tree location", message: "Please take your tree location")
             return
         }
@@ -158,7 +158,8 @@ class CameraScreen: UIViewController, UIImagePickerControllerDelegate, UINavigat
         guard imageData != nil else {
             return
         }
-        
+        self.displayMessage(title: "Upload successfully", message: "Your tree has been uploaded !")
+
         // Specify the file path and name
         let path = "trees_images/\(UUID().uuidString).jpg"
         let fileRef = storageRef.child(path)
@@ -177,13 +178,21 @@ class CameraScreen: UIViewController, UIImagePickerControllerDelegate, UINavigat
                     fatalError("no database controller")
                 }
                 checkNew = true
-                databaseController.addTree(
-                    name: self.treeName.text!,
-                    desc: self.treeDescription.text!,
-                    img: path,
-                    lat: self.latitude!,
-                    log: self.longitude!
-                )
+                if self.check == false {
+                    self.latitude = coordReturned?.latitude
+                    self.longitude = coordReturned?.longitude
+                }
+                Task {
+                    await databaseController.addTree(
+                        name: self.treeName.text!,
+                        desc: self.treeDescription.text!,
+                        img: path,
+                        lat: self.latitude!,
+                        log: self.longitude!
+                    )
+                    self.navigationController?.popViewController(animated: false)
+                    return
+                }
 
 //                let db = Firestore.firestore()
 //                db.collection("trees").document().setData(
@@ -204,4 +213,5 @@ class CameraScreen: UIViewController, UIImagePickerControllerDelegate, UINavigat
     override func viewDidDisappear(_ animated: Bool) {
         check = false
     }
+
 }

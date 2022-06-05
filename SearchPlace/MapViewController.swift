@@ -9,7 +9,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-
+var coordReturned: CLLocationCoordinate2D?
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
     var childrenArray: [UIAction] = []
@@ -18,7 +18,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var userPosition: CLLocation?
     let locationManager = CLLocationManager()
     let defaultPosition = CLLocationCoordinate2D(latitude: -37.840935, longitude: 144.946457)
+    var coordToReturn: CLLocationCoordinate2D?
+    
 
+    
     @IBOutlet weak var ui_map: MKMapView!
     @IBOutlet weak var mapTypeSegmet: UISegmentedControl!
     @IBOutlet weak var button2: UIButton!
@@ -39,7 +42,13 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         setupMenu()
     }
 
+    @IBAction func chooseLocation(_ sender: Any) {
+        coordReturned = self.coordToReturn
+        navigationController?.popViewController(animated: true)
+    }
+    
 
+    
     @IBAction func myPositionButtonTaped(_ sender: Any) {
         guard let myposition = userPosition?.coordinate else { return }
         initMapRegion(coord: myposition)
@@ -76,12 +85,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
 
     func initMapRegion(coord: CLLocationCoordinate2D) {
+        self.coordToReturn = coord
         ui_map.setRegion(MKCoordinateRegion(center: coord , span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02)), animated: false)
     }
 
     func addPoiToMap(coord: CLLocationCoordinate2D, poiTittle: String) {
         let poi = MKPointAnnotation()
-        print(poiTittle)
         poi.coordinate = coord
         poi.title = poiTittle
         ui_map.addAnnotation(poi)

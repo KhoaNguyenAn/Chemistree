@@ -15,7 +15,7 @@ class MapScreen : UIViewController {
 
     @IBOutlet weak var goButton: UIButton!
 
-    @IBOutlet weak var mapView: MKMapView!
+//    @IBOutlet weak var mapView: MKMapView!
 //    let locationManager = CLLocationManager()
 //    let regionInMeters: Double = 10000
 //    var previousLocation: CLLocation?

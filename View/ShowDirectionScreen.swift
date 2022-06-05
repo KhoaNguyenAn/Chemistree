@@ -8,7 +8,6 @@
 import UIKit
 import MapKit
 import CoreLocation
-import Layoutless
 import AVFoundation
 
 class ShowDirectionScreen: UIViewController {
@@ -21,9 +20,33 @@ class ShowDirectionScreen: UIViewController {
     let locationdistance: Double = 500
     
     var speechsynthesizer = AVSpeechSynthesizer()
+    let locationManager = CLLocationManager()
     
-    lazy var locationManager: CLLocationManager = {
-        let locationManager = CLLocationManager()
+    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var startStopButton: UIButton!
+    @IBOutlet weak var getDirectionButton: UIButton!
+    @IBOutlet weak var directionLabel: UILabel!
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+
+        directionLabel.text = "Where do you want to go?"
+        directionLabel.font = .boldSystemFont(ofSize: 16)
+        directionLabel.textAlignment = .center
+        directionLabel.numberOfLines = 0
+        
+        getDirectionButton.setTitle("Get Direction", for: .normal)
+        getDirectionButton.setTitleColor(.systemBlue, for: .normal)
+        getDirectionButton.titleLabel?.font = .boldSystemFont(ofSize: 16)
+        
+        startStopButton.setTitle("Start Navigation", for: .normal)
+        startStopButton.setTitleColor(.white, for: .normal)
+        startStopButton.titleLabel?.font = .boldSystemFont(ofSize: 16)
+        startStopButton.layer.cornerRadius = 15
+        startStopButton.layer.backgroundColor = UIColor.systemBlue.cgColor
+        
+        mapView.delegate = self
+        mapView.showsUserLocation = true
         
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
@@ -34,60 +57,16 @@ class ShowDirectionScreen: UIViewController {
             print("Location services are not enable")
         }
         
-        return locationManager
-    }()
-    
-    
-    lazy var directionLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Where do you want to go?"
-        label.font = .boldSystemFont(ofSize: 16)
-        label.textAlignment = .center
-        label.numberOfLines = 0
-        return label
-    }()
-    
-    lazy var textField: UITextField = {
-        let tf = UITextField()
-        tf.placeholder = "Enter your destination"
-        tf.borderStyle = .roundedRect
-        return tf
-    }()
-    
-    lazy var getDirectionButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Get Direction", for: .normal)
-        button.setTitleColor(.systemBlue, for: .normal)
-        button.titleLabel?.font = .boldSystemFont(ofSize: 16)
-        button.addTarget(self, action: #selector(getDirectionButtonTapped), for: .touchUpInside)
-        return button
-    }()
-    
-    lazy var startStopButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Start Navigation", for: .normal)
-        button.setTitleColor(.systemBlue, for: .normal)
-        button.titleLabel?.font = .boldSystemFont(ofSize: 16)
-        button.addTarget(self, action: #selector(startStopButtonTapped), for: .touchUpInside)
-        return button
-    }()
-    
-    lazy var mapView: MKMapView = {
-        let mapView = MKMapView()
-        mapView.delegate = self
-        mapView.showsUserLocation = true
-        return mapView
-    }()
-    
-    @objc fileprivate func getDirectionButtonTapped() {
-        guard let text = textField.text else {
-            return
-        }
-        showMapRoute = true
-        textField.endEditing(true)
         
+        // Do any additional setup after loading the view.
+        locationManager.startUpdatingLocation()
+    }
+   
+    @IBAction func getDirectionButtonTapped(_ sender: Any) {
+
+        showMapRoute = true
         let geoCoder = CLGeocoder()
-        geoCoder.geocodeAddressString(text) { (placemarks, err) in
+        geoCoder.geocodeAddressString("Monash University") { (placemarks, err) in
             if let err = err {
                 print(err.localizedDescription)
                 return
@@ -104,8 +83,8 @@ class ShowDirectionScreen: UIViewController {
         
         startStopButton.setTitle(navigationStarted ? "Stop Navigation" : "Start Navigation", for: .normal)
     }
-    
-    @objc fileprivate func startStopButtonTapped() {
+
+    @IBAction func startStopButtonTapped(_ sender: Any) {
         if !navigationStarted {
             showMapRoute = true
             if let location = locationManager.location {
@@ -123,33 +102,13 @@ class ShowDirectionScreen: UIViewController {
         }
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        setupViews()
-        locationManager.startUpdatingLocation()
-    }
-
-    fileprivate func setupViews() {
-        view.backgroundColor = .systemBackground
-        
-        stack(.vertical)(
-            directionLabel.insetting(by: 16),
-            stack(.horizontal, spacing: 16)(
-                textField,
-                getDirectionButton
-            ).insetting(by: 16),
-            startStopButton.insetting(by: 16),
-            mapView
-        ).fillingParent(relativeToSafeArea: true).layout(in: view)
-    }
     
-    fileprivate func centerViewToUserLocation(center: CLLocationCoordinate2D) {
+    func centerViewToUserLocation(center: CLLocationCoordinate2D) {
         let region = MKCoordinateRegion(center: center, latitudinalMeters: locationdistance, longitudinalMeters: locationdistance)
         mapView.setRegion(region, animated: true)
     }
     
-    fileprivate func handleAuthorizationStatus(locationManager: CLLocationManager, status: CLAuthorizationStatus) {
+    func handleAuthorizationStatus(locationManager: CLLocationManager, status: CLAuthorizationStatus) {
         switch status {
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
@@ -174,7 +133,7 @@ class ShowDirectionScreen: UIViewController {
         }
     }
     
-    fileprivate func mapRoute(destinationCoordinate: CLLocationCoordinate2D) {
+    func mapRoute(destinationCoordinate: CLLocationCoordinate2D) {
         guard let sourceCoordinate = locationManager.location?.coordinate else { return }
         
         let sourcePlacemark = MKPlacemark(coordinate: sourceCoordinate)
@@ -206,7 +165,7 @@ class ShowDirectionScreen: UIViewController {
         }
     }
     
-    fileprivate func getRouteSteps(route: MKRoute) {
+    func getRouteSteps(route: MKRoute) {
         for monitoredRegions in locationManager.monitoredRegions {
             locationManager.stopMonitoring(for: monitoredRegions)
         }

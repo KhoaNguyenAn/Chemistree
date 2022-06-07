@@ -316,17 +316,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="YLG-9m-qN1">
+                                <rect key="frame" x="0.0" y="86" width="414" height="725"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </mapView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QVk-vy-YMx">
-                                <rect key="frame" x="288" y="648" width="43" height="43"/>
+                                <rect key="frame" x="170" y="695" width="43" height="43"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" image="location.north.circle.fill" catalog="system" imagePlacement="top" title="Go">
                                     <color key="baseBackgroundColor" systemColor="systemRedColor"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="getDirection:" destination="ArC-b7-ScR" eventType="touchUpInside" id="Wto-AR-muE"/>
-                                    <action selector="goToDirection:" destination="ArC-b7-ScR" eventType="touchUpInside" id="25e-5p-Zog"/>
-                                    <action selector="goToTree:" destination="ArC-b7-ScR" eventType="touchUpInside" id="T2q-Nt-hkN"/>
+                                    <action selector="goToDirection:" destination="ArC-b7-ScR" eventType="touchUpInside" id="AYN-1Z-zNI"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -335,13 +337,13 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" image="globe.asia.australia.fill" catalog="system" id="kd4-6c-nSH"/>
                     <connections>
-                        <outlet property="goButton" destination="QVk-vy-YMx" id="Ql0-85-CGw"/>
+                        <outlet property="goButton" destination="QVk-vy-YMx" id="n6c-37-pLS"/>
                         <segue destination="xj4-dF-FdU" kind="show" identifier="showDirectionSegue" id="N3l-Ge-x2Y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MPM-YV-97p" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1683" y="1503"/>
+            <point key="canvasLocation" x="1682.608695652174" y="1502.6785714285713"/>
         </scene>
         <!--Show Direction Screen-->
         <scene sceneID="Wj1-6D-0FG">
@@ -352,7 +354,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Noy-aW-maz">
-                                <rect key="frame" x="0.0" y="170" width="414" height="692"/>
+                                <rect key="frame" x="0.0" y="170" width="414" height="726"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5TB-g8-0YR">
@@ -372,7 +374,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ey8-Xy-kf2">
-                                <rect key="frame" x="107" y="789" width="201" height="31"/>
+                                <rect key="frame" x="107" y="790" width="201" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Button"/>
@@ -380,6 +382,13 @@
                                     <action selector="startStopButtonTapped:" destination="xj4-dF-FdU" eventType="touchUpInside" id="lgo-2a-4lk"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="(Double click)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Ar-nf-UmQ">
+                                <rect key="frame" x="144" y="177" width="106" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" systemColor="systemBlueColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Poq-is-6KD"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -624,6 +633,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGroupedBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

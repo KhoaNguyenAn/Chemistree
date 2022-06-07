@@ -338,6 +338,7 @@
                     <tabBarItem key="tabBarItem" title="Map" image="globe.asia.australia.fill" catalog="system" id="kd4-6c-nSH"/>
                     <connections>
                         <outlet property="goButton" destination="QVk-vy-YMx" id="n6c-37-pLS"/>
+                        <outlet property="mapView" destination="YLG-9m-qN1" id="OYI-0q-d64"/>
                         <segue destination="xj4-dF-FdU" kind="show" identifier="showDirectionSegue" id="N3l-Ge-x2Y"/>
                     </connections>
                 </viewController>
@@ -357,7 +358,7 @@
                                 <rect key="frame" x="0.0" y="170" width="414" height="726"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5TB-g8-0YR">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5TB-g8-0YR">
                                 <rect key="frame" x="20" y="33" width="374" height="113"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>

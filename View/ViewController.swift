@@ -344,7 +344,9 @@ class ViewController: UIViewController, DatabaseListener {
                 let db = Firestore.firestore()
                 db.collection("user").document(currentUserEmail!).updateData([
                     "tree_latitude": FieldValue.arrayUnion([cards[0].lat!]),
-                    "tree_longitude": FieldValue.arrayUnion([cards[0].log!])
+                    "tree_longitude": FieldValue.arrayUnion([cards[0].log!]),
+                    "tree_name": FieldValue.arrayUnion([cards[0].name!]),
+                    "tree_description": FieldValue.arrayUnion([cards[0].des!])
                 ])
                 //
                 if cards[0].center.y < (self.view.center.y - optionLength) {

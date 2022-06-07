@@ -16,6 +16,7 @@ class ViewController: UIViewController, DatabaseListener {
     var currentTree: [Tree] = []
     var retrievedImages = [UIImage] ()
     var checkDisplay: Bool = false
+    
     @IBOutlet weak var takePicButton: UIButton!
     func onUserChange(change: DatabaseChange, users: [User]) {
         // do nothing
@@ -170,7 +171,9 @@ class ViewController: UIViewController, DatabaseListener {
                                 img: image, name: self.currentTree[path.1].name!,
                                 description: self.currentTree[path.1].desc!,
                                 lat: self.currentTree[path.1].lat!,
-                                log: self.currentTree[path.1].log!)
+                                log: self.currentTree[path.1].log!,
+                                path: self.currentTree[path.1].image!
+                            )
                             
                             self.cards.append(card)
                             
@@ -346,7 +349,8 @@ class ViewController: UIViewController, DatabaseListener {
                     "tree_latitude": FieldValue.arrayUnion([cards[0].lat!]),
                     "tree_longitude": FieldValue.arrayUnion([cards[0].log!]),
                     "tree_name": FieldValue.arrayUnion([cards[0].name!]),
-                    "tree_description": FieldValue.arrayUnion([cards[0].des!])
+                    "tree_description": FieldValue.arrayUnion([cards[0].des!]),
+                    "tree_path": FieldValue.arrayUnion([cards[0].path!])
                 ])
                 //
                 if cards[0].center.y < (self.view.center.y - optionLength) {

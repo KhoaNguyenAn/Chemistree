@@ -15,11 +15,14 @@ class customPin: NSObject, MKAnnotation {
     var coordinate: CLLocationCoordinate2D
     var title: String?
     var subtitle: String?
+    var path: String?
+    var img: UIImage?
     
-    init(pinTitle: String, pinSubTitle: String, location: CLLocationCoordinate2D) {
+    init(pinTitle: String, pinSubTitle: String, location: CLLocationCoordinate2D, path: String) {
         self.title = pinTitle
         self.subtitle = pinSubTitle
         self.coordinate = location
+        self.path = path
     }
 }
 
@@ -47,6 +50,8 @@ class MapScreen : UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
     let locationManager = CLLocationManager()
     let locationdistance: Double = 900
     var userLocation: CLLocationCoordinate2D?
+    var currentImg: [UIImage] = []
+    var count: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,7 +63,7 @@ class MapScreen : UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
         self.view.backgroundColor = UIColor(red: 197/255, green: 214/255, blue: 217/255, alpha: 1.0)
         treeLocation = []
         
-
+        
         self.mapView.delegate = self
         self.mapView.showsUserLocation = true
         if CLLocationManager.locationServicesEnabled() {
@@ -79,7 +84,7 @@ class MapScreen : UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
     
     func retrieveData() {
         let docRef = db.collection("user").document(currentUserEmail!)
-
+        
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
                 let dataDescription = document.data()
@@ -87,24 +92,41 @@ class MapScreen : UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
                 let longitude = dataDescription!["tree_longitude"] as? [Double]
                 let name = dataDescription!["tree_name"] as? [String]
                 let description = dataDescription!["tree_description"] as? [String]
+                let path = dataDescription!["tree_path"] as? [String]
                 if latitude!.count > 0 {
                     for i in 0..<latitude!.count {
                         self.treeLocation.append((latitude: latitude![i], longitude: longitude![i], name: name![i]))
-
+                        
                         //
-                        let newLocation = CLLocationCoordinate2D(latitude: latitude![i], longitude: longitude![i])
-                        let pin = customPin(pinTitle: name![i], pinSubTitle: description![i], location: newLocation)
-                        self.mapView.addAnnotation(pin)
+                        let storageRef = Storage.storage().reference()
+                        
+                        // Specify the path
+                        let fileRef = storageRef.child(path![i])
+                        
+                        // Retrieve the data
+                        fileRef.getData(maxSize: 5 * 1024 * 1024) { data, error in
+                            
+                            // Check for errors
+                            if error == nil && data != nil {
+                                // Create a UIImage and put it into our array for display
+                                if let image = UIImage(data: data!) {
+                                    // *************
+                                    self.currentImg.append(image)
+                                    let newLocation = CLLocationCoordinate2D(latitude: latitude![i], longitude: longitude![i])
+                                    let pin = customPin(pinTitle: name![i], pinSubTitle: description![i], location: newLocation, path: path![i])
+                                    self.mapView.addAnnotation(pin)
+                                }
+                            }
+                            //
+                            
+                        }
                     }
+                } else {
+                    print("Document does not exist")
                 }
-                else {
-                    return
-                }
-            } else {
-                print("Document does not exist")
             }
+            
         }
-
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -125,20 +147,43 @@ class MapScreen : UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
             annotationLabel.backgroundColor = UIColor.white
             annotationLabel.layer.cornerRadius = 15
             annotationLabel.clipsToBounds = true
-
-            // you can customize it anyway you want like any other label
+            
             return annotationView
         }
+        
         let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "customannotation")
         annotationView.canShowCallout = true
         annotationView.image = UIImage(named: "pin4")
         
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
+        imageView.image = self.currentImg[count]
+        count += 1
+        imageView.contentMode = .scaleAspectFit
+        annotationView.leftCalloutAccessoryView = imageView
         
+        // add button
+        let smallSquare = CGSize(width: 75, height: 40)
+        let button = UIButton(frame: CGRect(origin: CGPoint(x: -20,y: 0), size: smallSquare))
+        button.tag = count
+        
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.lightGray.cgColor
+        button.layer.cornerRadius = 5
+        button.clipsToBounds = true
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.backgroundColor = UIColor.systemBlue
+        button.setTitle("Select", for: UIControl.State.normal)
+
+
+        button.addTarget(self, action: #selector(getDirections(sender:)), for: UIControl.Event.touchUpInside)
+        annotationView.rightCalloutAccessoryView = button
         return annotationView
     }
     
-    @objc func getDirections() {
-        print("ABC")
+    @objc func getDirections(sender:UIButton!) {
+        sender.backgroundColor = UIColor.systemRed
+        sender.setTitle("Picked", for: UIControl.State.normal)
+        print(sender.tag)
     }
     
     func handleAuthorizationStatus(locationManager: CLLocationManager, status: CLAuthorizationStatus) {

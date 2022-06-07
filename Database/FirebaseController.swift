@@ -163,7 +163,8 @@ class FirebaseController: NSObject, DatabaseProtocol {
                 "tree_latitude": [],
                 "tree_longitude": [],
                 "tree_name": [],
-                "tree_description": []
+                "tree_description": [],
+                "tree_path": []
             ]) { err in
                 if let err = err {
                     print("Error writing document: \(err)")

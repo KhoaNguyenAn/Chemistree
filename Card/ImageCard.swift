@@ -12,12 +12,14 @@ class ImageCard: CardView {
     var des: String?
     var lat: Double?
     var log: Double?
-    init(frame: CGRect, img: UIImage, name: String, description: String, lat: Double, log: Double ) {
+    var path: String?
+    init(frame: CGRect, img: UIImage, name: String, description: String, lat: Double, log: Double, path: String ) {
         super.init(frame: frame)
         self.name = name
         self.des = description
         self.lat = lat
         self.log = log
+        self.path = path
         // image
         
         let imageView = UIImageView(image: img)

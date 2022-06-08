@@ -22,6 +22,8 @@ class ViewController: UIViewController, DatabaseListener {
         // do nothing
     }
     
+    
+    
     func onAllTreesChange(change: DatabaseChange, trees: [Tree]) {
         var db = Firestore.firestore()
         db.collection("trees").getDocuments()
@@ -89,8 +91,17 @@ class ViewController: UIViewController, DatabaseListener {
     /// but this overlay view is non-interactive so any touch events are passed on to the next receivers.
     var emojiOptionsOverlay: EmojiOptionsOverlay!
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let backItem = UIBarButtonItem()
+        backItem.title = "Back"
+        navigationItem.backBarButtonItem = backItem // This will show in the next view controller being pushed
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+//        self.navigationController?.setNavigationBarHidden(true, animated: true)
+//        self.navigationController?.navigationBar.topItem?.backBarButtonItem?.title = "Sign Out"
+
         self.checkDisplay = false
         startLoading()
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
@@ -99,13 +110,19 @@ class ViewController: UIViewController, DatabaseListener {
         self.view.backgroundColor = UIColor(red: 197/255, green: 214/255, blue: 217/255, alpha: 1.0)
         dynamicAnimator = UIDynamicAnimator(referenceView: self.view)
         setUpDummyUI()
-        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Sign Out", style: .plain, target: self, action: #selector(addTapped))
+
         // TODO: Get image
         // Create tree list
         if currentTree.count != 0 {
             
             retrievedData()
         }
+    }
+    
+    @objc func addTapped() {
+        checkLogin = false
+        navigationController?.popViewController(animated: true)
     }
     
     func startLoading() {

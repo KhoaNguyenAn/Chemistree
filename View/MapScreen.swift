@@ -38,7 +38,8 @@ class userPin: NSObject, MKAnnotation {
     }
 }
 
-
+var destination: CLLocationCoordinate2D?
+var checkLogin: Bool = false
 class MapScreen : UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     
     
@@ -52,17 +53,21 @@ class MapScreen : UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
     var userLocation: CLLocationCoordinate2D?
     var currentImg: [UIImage] = []
     var count: Int = 0
+    var countPicked = 0
+    var arrTag: [Int] = []
+    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         goButton.frame.size.height = 65
         goButton.frame.size.width = 65
         goButton.layer.cornerRadius = goButton.frame.size.height/2
         goButton.layer.masksToBounds = true
         self.view.backgroundColor = UIColor(red: 197/255, green: 214/255, blue: 217/255, alpha: 1.0)
         treeLocation = []
-        
+
         
         self.mapView.delegate = self
         self.mapView.showsUserLocation = true
@@ -75,12 +80,15 @@ class MapScreen : UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
             print("Location services are not enable")
         }
         
-        
+
         // Do any additional setup after loading the view.
         locationManager.startUpdatingLocation()
         
         retrieveData()
     }
+    
+
+
     
     func retrieveData() {
         let docRef = db.collection("user").document(currentUserEmail!)
@@ -115,6 +123,7 @@ class MapScreen : UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
                                     let newLocation = CLLocationCoordinate2D(latitude: latitude![i], longitude: longitude![i])
                                     let pin = customPin(pinTitle: name![i], pinSubTitle: description![i], location: newLocation, path: path![i])
                                     self.mapView.addAnnotation(pin)
+                                    self.locations.append(newLocation)
                                 }
                             }
                             //
@@ -181,9 +190,17 @@ class MapScreen : UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
     }
     
     @objc func getDirections(sender:UIButton!) {
+        if sender.currentTitle == "Picked" {
+            sender.backgroundColor = UIColor.systemBlue
+            sender.setTitle("Select", for: UIControl.State.normal)
+            countPicked -= 1
+            arrTag = arrTag.filter(){$0 != sender.tag}
+            return
+        }
         sender.backgroundColor = UIColor.systemRed
         sender.setTitle("Picked", for: UIControl.State.normal)
-        print(sender.tag)
+        countPicked += 1
+        arrTag.append(sender.tag)
     }
     
     func handleAuthorizationStatus(locationManager: CLLocationManager, status: CLAuthorizationStatus) {
@@ -228,7 +245,13 @@ class MapScreen : UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
     // TODO: Get direction
     
     @IBAction func goToDirection(_ sender: Any) {
-        performSegue(withIdentifier: "showDirectionSegue", sender: sender)
+        if countPicked == 1 {
+            let firstElement = arrTag.first
+            destination = locations[firstElement! - 1]
+            performSegue(withIdentifier: "showDirectionSegue", sender: sender)
+            return
+        }
+        displayMessage(title: "Can only pick one Tree to go to", message: "Please deselect some trees")
     }
     
 }

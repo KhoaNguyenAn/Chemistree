@@ -60,6 +60,7 @@ class RegisterScreen: UIViewController, DatabaseListener {
             await MainActor.run {
                 currentUserEmail = email
                 checkNew = true
+                checkLogin = true
                 performSegue(withIdentifier: "showTreesSegue", sender: sender)
             }
         }

@@ -30,9 +30,11 @@ class ShowDirectionScreen: UIViewController {
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(true, animated: true)
 
-        directionLabel.text = "Where do you want to go?"
-        directionLabel.font = .boldSystemFont(ofSize: 16)
+        directionLabel.text = " Take you to Chemistree"
+        directionLabel.font = .boldSystemFont(ofSize: 20)
+        directionLabel.textColor = UIColor.systemMint
         directionLabel.textAlignment = .center
+
         directionLabel.numberOfLines = 0
         
         getDirectionButton.setTitle("Get Direction", for: .normal)
@@ -61,23 +63,31 @@ class ShowDirectionScreen: UIViewController {
         // Do any additional setup after loading the view.
         locationManager.startUpdatingLocation()
     }
-   
+    @IBAction func backButton(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+    }
+    
     @IBAction func getDirectionButtonTapped(_ sender: Any) {
-
+        directionLabel.font = .boldSystemFont(ofSize: 16)
+        directionLabel.textColor = UIColor.black
+        directionLabel.textAlignment = .center
+        directionLabel.numberOfLines = 4
+        
         showMapRoute = true
-        let geoCoder = CLGeocoder()
-        geoCoder.geocodeAddressString("Monash University") { (placemarks, err) in
-            if let err = err {
-                print(err.localizedDescription)
-                return
-            }
-            guard let placemarks = placemarks,
-                  let placemark = placemarks.first,
-                  let location = placemark.location
-            else { return }
-            let destinationCoordinate = location.coordinate
-            self.mapRoute(destinationCoordinate: destinationCoordinate)
-        }
+//        let geoCoder = CLGeocoder()
+//        geoCoder.geocodeAddressString("Monash University") { (placemarks, err) in
+//            if let err = err {
+//                print(err.localizedDescription)
+//                return
+//            }
+//            guard let placemarks = placemarks,
+//                  let placemark = placemarks.first,
+//                  let location = placemark.location
+//            else { return }
+//        }
+        
+        let destinationCoordinate = destination
+        self.mapRoute(destinationCoordinate: destinationCoordinate!)
         
         navigationStarted.toggle()
         
@@ -85,6 +95,7 @@ class ShowDirectionScreen: UIViewController {
     }
 
     @IBAction func startStopButtonTapped(_ sender: Any) {
+
         if !navigationStarted {
             showMapRoute = true
             if let location = locationManager.location {
@@ -145,7 +156,7 @@ class ShowDirectionScreen: UIViewController {
         let routeRequest = MKDirections.Request()
         routeRequest.source = sourceItem
         routeRequest.destination = destinationItem
-        routeRequest.transportType = .automobile
+        routeRequest.transportType = .walking
         
         let directions = MKDirections(request: routeRequest)
         directions.calculate { (response, err) in
@@ -183,7 +194,7 @@ class ShowDirectionScreen: UIViewController {
         }
         
         stepCounter += 1
-        let initialMessage = "In \(steps[stepCounter].distance) meters \(steps[stepCounter].instructions), then in \(steps[stepCounter + 1].distance) meters, \(steps[stepCounter + 1].instructions)"
+        let initialMessage = "In \(round(steps[stepCounter].distance)) meters \(steps[stepCounter].instructions), then in \(round(steps[stepCounter + 1].distance)) meters, \(steps[stepCounter + 1].instructions)"
         directionLabel.text = initialMessage
         let speechUtterance = AVSpeechUtterance(string: initialMessage)
         speechsynthesizer.speak(speechUtterance)

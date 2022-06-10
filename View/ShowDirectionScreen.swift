@@ -74,18 +74,12 @@ class ShowDirectionScreen: UIViewController {
         directionLabel.numberOfLines = 4
         
         showMapRoute = true
-//        let geoCoder = CLGeocoder()
-//        geoCoder.geocodeAddressString("Monash University") { (placemarks, err) in
-//            if let err = err {
-//                print(err.localizedDescription)
-//                return
-//            }
-//            guard let placemarks = placemarks,
-//                  let placemark = placemarks.first,
-//                  let location = placemark.location
-//            else { return }
-//        }
-        
+        // Drop a pin
+        let dropPin = MKPointAnnotation()
+        dropPin.coordinate = destination!
+        dropPin.title = "Your Tranquility"
+        mapView.addAnnotation(dropPin)
+
         let destinationCoordinate = destination
         self.mapRoute(destinationCoordinate: destinationCoordinate!)
         
@@ -242,7 +236,21 @@ extension ShowDirectionScreen: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let renderer = MKPolylineRenderer(overlay: overlay)
         renderer.strokeColor = .systemBlue
+        renderer.lineWidth = 9
         return renderer
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation is MKUserLocation {            
+            return nil
+        }
+        
+        let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "destination")
+        annotationView.canShowCallout = true
+        annotationView.image = UIImage(named: "pin10")
+        annotationView.isHighlighted = true
+        annotationView.isEnabled = true
+        return annotationView
     }
 }
 

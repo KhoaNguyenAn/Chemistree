@@ -49,7 +49,7 @@ class MapScreen : UIViewController, CLLocationManagerDelegate, MKMapViewDelegate
     var treeLocation:[(latitude: Double, longitude: Double, name: String)] = []
     var locations : [CLLocationCoordinate2D] = []
     let locationManager = CLLocationManager()
-    let locationdistance: Double = 900
+    let locationdistance: Double = 1900
     var userLocation: CLLocationCoordinate2D?
     var currentImg: [UIImage] = []
     var count: Int = 0

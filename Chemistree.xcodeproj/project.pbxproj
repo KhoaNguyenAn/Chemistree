@@ -14,6 +14,9 @@
 		49022EF3284A158B00F7BD10 /* StrokeAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49022EF2284A158B00F7BD10 /* StrokeAnimation.swift */; };
 		49022EF5284A165200F7BD10 /* RotationAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49022EF4284A165200F7BD10 /* RotationAnimation.swift */; };
 		49022EF7284A16AB00F7BD10 /* StrokeColorAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49022EF6284A16AB00F7BD10 /* StrokeColorAnimation.swift */; };
+		49042763285341080071DBE5 /* Chemistree-DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 49042761285341080071DBE5 /* Chemistree-DataModel.xcdatamodeld */; };
+		49042766285341F70071DBE5 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49042764285341F70071DBE5 /* User+CoreDataClass.swift */; };
+		49042767285341F70071DBE5 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49042765285341F70071DBE5 /* User+CoreDataProperties.swift */; };
 		490B804F282F7FD10020D69E /* CameraScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490B804E282F7FD10020D69E /* CameraScreen.swift */; };
 		4911255D284734FA0086CB47 /* UIViewDisplayMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4911255C284734FA0086CB47 /* UIViewDisplayMessage.swift */; };
 		49225DDC282D22A600993A22 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49225DDB282D22A600993A22 /* CardView.swift */; };
@@ -31,7 +34,6 @@
 		494DBB1428377105007200BA /* DatabaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494DBB1328377105007200BA /* DatabaseProtocol.swift */; };
 		494DBB1628377127007200BA /* MulticastDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494DBB1528377127007200BA /* MulticastDelegate.swift */; };
 		494DBB1828377161007200BA /* FirebaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494DBB1728377161007200BA /* FirebaseController.swift */; };
-		494DBB1A28377331007200BA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494DBB1928377331007200BA /* User.swift */; };
 		494DBB1C28377451007200BA /* Tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494DBB1B28377451007200BA /* Tree.swift */; };
 		494DBB1E2837755E007200BA /* AllTrees.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494DBB1D2837755E007200BA /* AllTrees.swift */; };
 		49613339284C89CC000A94DD /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49613338284C89CC000A94DD /* MapViewController.swift */; };
@@ -58,6 +60,9 @@
 		49022EF2284A158B00F7BD10 /* StrokeAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeAnimation.swift; sourceTree = "<group>"; };
 		49022EF4284A165200F7BD10 /* RotationAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotationAnimation.swift; sourceTree = "<group>"; };
 		49022EF6284A16AB00F7BD10 /* StrokeColorAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeColorAnimation.swift; sourceTree = "<group>"; };
+		49042762285341080071DBE5 /* Chemistree-DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Chemistree-DataModel.xcdatamodel"; sourceTree = "<group>"; };
+		49042764285341F70071DBE5 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
+		49042765285341F70071DBE5 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		490B804E282F7FD10020D69E /* CameraScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraScreen.swift; sourceTree = "<group>"; };
 		4911255C284734FA0086CB47 /* UIViewDisplayMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewDisplayMessage.swift; sourceTree = "<group>"; };
 		49225DDB282D22A600993A22 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
@@ -76,7 +81,6 @@
 		494DBB1328377105007200BA /* DatabaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseProtocol.swift; sourceTree = "<group>"; };
 		494DBB1528377127007200BA /* MulticastDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MulticastDelegate.swift; sourceTree = "<group>"; };
 		494DBB1728377161007200BA /* FirebaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseController.swift; sourceTree = "<group>"; };
-		494DBB1928377331007200BA /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		494DBB1B28377451007200BA /* Tree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tree.swift; sourceTree = "<group>"; };
 		494DBB1D2837755E007200BA /* AllTrees.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTrees.swift; sourceTree = "<group>"; };
 		49613338284C89CC000A94DD /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -107,6 +111,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		49042760285340DC0071DBE5 /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				49042761285341080071DBE5 /* Chemistree-DataModel.xcdatamodeld */,
+				49042764285341F70071DBE5 /* User+CoreDataClass.swift */,
+				49042765285341F70071DBE5 /* User+CoreDataProperties.swift */,
+			);
+			path = DataModel;
+			sourceTree = "<group>";
+		};
 		491368EC2849CB67001FADEA /* LoadingAnimation */ = {
 			isa = PBXGroup;
 			children = (
@@ -181,10 +195,10 @@
 		494DBB12283770D6007200BA /* Database */ = {
 			isa = PBXGroup;
 			children = (
+				49042760285340DC0071DBE5 /* DataModel */,
 				494DBB1328377105007200BA /* DatabaseProtocol.swift */,
 				494DBB1528377127007200BA /* MulticastDelegate.swift */,
 				494DBB1728377161007200BA /* FirebaseController.swift */,
-				494DBB1928377331007200BA /* User.swift */,
 				494DBB1B28377451007200BA /* Tree.swift */,
 				494DBB1D2837755E007200BA /* AllTrees.swift */,
 				4987CF072840C74F008AE5E0 /* GoogleService-Info.plist */,
@@ -301,14 +315,16 @@
 				494DBB1828377161007200BA /* FirebaseController.swift in Sources */,
 				494DBB1E2837755E007200BA /* AllTrees.swift in Sources */,
 				497384952852F808004A837A /* Article.swift in Sources */,
+				49042767285341F70071DBE5 /* User+CoreDataProperties.swift in Sources */,
+				49042763285341080071DBE5 /* Chemistree-DataModel.xcdatamodeld in Sources */,
 				494DBB1428377105007200BA /* DatabaseProtocol.swift in Sources */,
 				494DBB0F28376729007200BA /* RegisterScreen.swift in Sources */,
 				49022EF3284A158B00F7BD10 /* StrokeAnimation.swift in Sources */,
 				4900ECB1282E1F570077994B /* MapScreen.swift in Sources */,
+				49042766285341F70071DBE5 /* User+CoreDataClass.swift in Sources */,
 				4911255D284734FA0086CB47 /* UIViewDisplayMessage.swift in Sources */,
 				497384982852F808004A837A /* ArticleCell.swift in Sources */,
 				49613339284C89CC000A94DD /* MapViewController.swift in Sources */,
-				494DBB1A28377331007200BA /* User.swift in Sources */,
 				493B2DD6282D204700BC4B7E /* ViewController.swift in Sources */,
 				497384972852F808004A837A /* CacheManager.swift in Sources */,
 				494DBB1C28377451007200BA /* Tree.swift in Sources */,
@@ -596,6 +612,19 @@
 			productName = FirebaseStorage;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		49042761285341080071DBE5 /* Chemistree-DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				49042762285341080071DBE5 /* Chemistree-DataModel.xcdatamodel */,
+			);
+			currentVersion = 49042762285341080071DBE5 /* Chemistree-DataModel.xcdatamodel */;
+			path = "Chemistree-DataModel.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 493B2DC6282D204700BC4B7E /* Project object */;
 }

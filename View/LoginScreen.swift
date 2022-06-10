@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import CoreData
 class LoginScreen: UIViewController, DatabaseListener {
     func onUserChange(change: DatabaseChange, users: [User]) {
         // do nothing
@@ -62,7 +62,12 @@ class LoginScreen: UIViewController, DatabaseListener {
         }
     }
     
-
+    @IBAction func saveUser(_ sender: Any) {
+        let email = emailField.text
+        let password = passwordField.text
+        createUser(email: email ?? "", password: password ?? "")
+    }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let backItem = UIBarButtonItem()
@@ -78,6 +83,59 @@ class LoginScreen: UIViewController, DatabaseListener {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    var users = [NSManagedObject]()
+    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    @IBAction func getD(_ sender: Any) {
+        getData()
+    }
+    func getData() {
+        do {
+//            var allTeamsFetchedResultsController: NSFetchedResultsController<User>?
+//            let request: NSFetchRequest<User> = User.fetchRequest()
+//            allTeamsFetchedResultsController = NSFetchedResultsController<User>(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+//            try allTeamsFetchedResultsController?.performFetch()
+//            if let users = allTeamsFetchedResultsController?.fetchedObjects {
+//                emailField.text = users.last?.value(forKey: "email") as? String
+//                passwordField.text = users.last?.value(forKey: "password") as? String
+//            }
+            
+            users = try context.fetch(User.fetchRequest())
+            print(users)
+            if users.count > 0 {
+//                print(users[0])
+                if let unwrapped = users.last?.value(forKey: "email") {
+                    print(unwrapped)
+                    emailField.text = unwrapped as! String
+                }
+                if let unwrapped = users.last?.value(forKey: "password") {
+                    print(unwrapped)
+                    passwordField.text = unwrapped as! String
+                }
+
+            }
+        }
+        catch {
+            // error
+            return
+        }
+    }
+    
+    func createUser(email: String, password: String) {
+        let newUser = User(context: context)
+        newUser.email = email
+        newUser.password = password
+        
+        do {
+            try context.save()
+        }
+        catch {
+            return
+        }
+        
+    }
 
 }
  

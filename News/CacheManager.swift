@@ -2,6 +2,7 @@
 //  CacheManager.swift
 //  News
 //
+//  Created by Khoa Nguyen on 3/6/2022.
 //
 
 import Foundation
